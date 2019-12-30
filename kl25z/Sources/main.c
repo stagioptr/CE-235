@@ -37,17 +37,21 @@
 #include "osa1.h"
 #include "free_rtos.h"
 #include "MainTask.h"
-#include "lpTmr1.h"
 #include "gpio1.h"
 #include "Task50Hz.h"
 #include "Task25Hz.h"
 #include "Task10Hz.h"
 #include "Task2Hz.h"
 #include "Task1Hz.h"
+#include "tpmTmr1.h"
+#include "DbgCs1.h"
 #if CPU_INIT_CONFIG
   #include "Init_Config.h"
 #endif
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "fsl_os_abstraction_ex.h"
+#include "ledrgb_hal.h"
+
 /*
  * Semaphore for control real time scheduler execution frequency.
  */
@@ -70,20 +74,22 @@ int main(void)
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
-  /* For example: for(;;) { } */
-  if( OSA_SemaCreate( &lowPowerTimerSema, 0 ) != kStatus_OSA_Success )
-  	while(1);				// Error Management.
+  /* Initialize  */
+  if( OSA_BinarySemaCreate( &lowPowerTimerSema ) != kStatus_OSA_Success )
+  	Sched_Error_Catch(1);				// Error Management.
 
-  if( OSA_SemaCreate( &task50HzSema, 0 ) != kStatus_OSA_Success )
-  	while(1);				// Error Management.
-  if( OSA_SemaCreate( &task25HzSema, 0 ) != kStatus_OSA_Success )
-  	while(1);				// Error Management.
-  if( OSA_SemaCreate( &task10HzSema, 0 ) != kStatus_OSA_Success )
-  	while(1);				// Error Management.
-  if( OSA_SemaCreate( &task2HzSema, 0 ) != kStatus_OSA_Success )
-  	while(1);				// Error Management.
-  if( OSA_SemaCreate( &task1HzSema, 0 ) != kStatus_OSA_Success )
-  	while(1);				// Error Management.
+  if( OSA_BinarySemaCreate( &task50HzSema ) != kStatus_OSA_Success )
+  	Sched_Error_Catch(1);				// Error Management.
+  if( OSA_BinarySemaCreate( &task25HzSema ) != kStatus_OSA_Success )
+  	Sched_Error_Catch(1);				// Error Management.
+  if( OSA_BinarySemaCreate( &task10HzSema ) != kStatus_OSA_Success )
+  	Sched_Error_Catch(1);				// Error Management.
+  if( OSA_BinarySemaCreate( &task2HzSema ) != kStatus_OSA_Success )
+  	Sched_Error_Catch(1);				// Error Management.
+  if( OSA_BinarySemaCreate( &task1HzSema ) != kStatus_OSA_Success )
+  	Sched_Error_Catch(1);				// Error Management.
+
+  ledrgb_init();
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/

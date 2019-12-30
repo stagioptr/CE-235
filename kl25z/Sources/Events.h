@@ -36,13 +36,14 @@
 #include "osa1.h"
 #include "free_rtos.h"
 #include "MainTask.h"
-#include "lpTmr1.h"
 #include "gpio1.h"
 #include "Task50Hz.h"
 #include "Task25Hz.h"
 #include "Task10Hz.h"
 #include "Task2Hz.h"
 #include "Task1Hz.h"
+#include "tpmTmr1.h"
+#include "DbgCs1.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -59,16 +60,28 @@ extern semaphore_t task10HzSema;
 extern semaphore_t task2HzSema;
 extern semaphore_t task1HzSema;
 
+#ifdef tpmTmr1_IDX
 /*
 ** ===================================================================
-**     Callback    : lpTmr1_OnTimerCompare
-**     Description : This callback is called when timer interrupt
-**     occurs.
+**     Interrupt handler : TPM0_IRQHandler
+**
+**     Description :
+**         User interrupt service routine. 
 **     Parameters  : None
-**     Returns : Nothing
+**     Returns     : Nothing
 ** ===================================================================
 */
-void lpTmr1_OnTimerCompare(void);
+void TPM0_IRQHandler(void);
+#else
+  /* This IRQ handler is not used by tpmTmr1 component. The purpose may be
+   * that the component has been removed or disabled. It is recommended to 
+   * remove this handler because Processor Expert cannot modify it according to 
+   * possible new request (e.g. in case that another component uses this
+   * interrupt vector). */
+  #warning This IRQ handler is not used by tpmTmr1 component.\
+           It is recommended to remove this because Processor Expert cannot\
+           modify it according to possible new request.
+#endif
 
 /* END Events */
 

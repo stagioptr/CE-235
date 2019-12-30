@@ -38,10 +38,13 @@ Generated_Code/gpio1.o: ../Generated_Code/gpio1.c \
  N:/kl25z/SDK/rtos/FreeRTOS/include/timers.h \
  N:/kl25z/SDK/platform/hal/inc/fsl_rtc_hal.h \
  N:/kl25z/SDK/platform/hal/inc/fsl_port_hal.h \
- N:/kl25z/SDK/platform/hal/inc/fsl_lptmr_hal.h \
- N:/kl25z/SDK/platform/drivers/inc/fsl_lptmr_driver.h \
  N:/kl25z/SDK/platform/hal/inc/fsl_gpio_hal.h \
- N:/kl25z/SDK/platform/drivers/inc/fsl_gpio_driver.h
+ N:/kl25z/SDK/platform/drivers/inc/fsl_gpio_driver.h \
+ N:/kl25z/SDK/platform/hal/inc/fsl_tpm_hal.h \
+ N:/kl25z/SDK/platform/drivers/inc/fsl_tpm_driver.h \
+ N:/kl25z/SDK/platform/hal/inc/fsl_uart_hal.h \
+ N:/kl25z/SDK/platform/hal/inc/fsl_lpsci_hal.h \
+ N:/kl25z/SDK/platform/utilities/inc/fsl_debug_console.h
 
 ../Generated_Code/gpio1.h:
 
@@ -127,10 +130,16 @@ N:/kl25z/SDK/platform/hal/inc/fsl_rtc_hal.h:
 
 N:/kl25z/SDK/platform/hal/inc/fsl_port_hal.h:
 
-N:/kl25z/SDK/platform/hal/inc/fsl_lptmr_hal.h:
-
-N:/kl25z/SDK/platform/drivers/inc/fsl_lptmr_driver.h:
-
 N:/kl25z/SDK/platform/hal/inc/fsl_gpio_hal.h:
 
 N:/kl25z/SDK/platform/drivers/inc/fsl_gpio_driver.h:
+
+N:/kl25z/SDK/platform/hal/inc/fsl_tpm_hal.h:
+
+N:/kl25z/SDK/platform/drivers/inc/fsl_tpm_driver.h:
+
+N:/kl25z/SDK/platform/hal/inc/fsl_uart_hal.h:
+
+N:/kl25z/SDK/platform/hal/inc/fsl_lpsci_hal.h:
+
+N:/kl25z/SDK/platform/utilities/inc/fsl_debug_console.h:

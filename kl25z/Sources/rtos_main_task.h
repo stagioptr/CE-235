@@ -36,13 +36,14 @@
 #include "osa1.h"
 #include "free_rtos.h"
 #include "MainTask.h"
-#include "lpTmr1.h"
 #include "gpio1.h"
 #include "Task50Hz.h"
 #include "Task25Hz.h"
 #include "Task10Hz.h"
 #include "Task2Hz.h"
 #include "Task1Hz.h"
+#include "tpmTmr1.h"
+#include "DbgCs1.h"
 
 #ifdef __cplusplus
 extern "C" {

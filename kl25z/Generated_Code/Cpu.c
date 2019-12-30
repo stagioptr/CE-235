@@ -8,7 +8,7 @@
 **     Repository  : KSDK 1.3.0
 **     Datasheet   : KL25P80M48SF0RM, Rev.3, Sep 2012
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-12-12, 12:30, # CodeGen: 14
+**     Date/Time   : 2019-12-24, 13:22, # CodeGen: 28
 **     Abstract    :
 **
 **     Settings    :
@@ -109,13 +109,6 @@ void Common_Init(void)
 void Components_Init(void)
 {
 
-  /*! lpTmr1 Auto initialization start */
-  NVIC_SetPriority(LPTMR0_IRQn, 1U);
-  OSA_InstallIntHandler(LPTMR0_IRQn, LPTMR0_IRQHandler);
-  LPTMR_DRV_Init(lpTmr1_IDX,&lpTmr1_State,&lpTmr1_lptmrCfg0);
-  LPTMR_DRV_InstallCallback(lpTmr1_IDX,lpTmr1_OnTimerCompare);
-  /*! lpTmr1 Auto initialization end */
-
   /*! gpio1 Auto initialization start */
   GPIO_DRV_Init(NULL,gpio1_OutConfig0);
   /*! gpio1 Auto initialization end */
@@ -135,6 +128,19 @@ void Components_Init(void)
   /*! Task1Hz Auto initialization start */ 
   (void)Task1Hz_Init();
   /*! Task1Hz Auto initialization end */                       
+  /*! tpmTmr1 Auto initialization start */
+  NVIC_SetPriority(TPM0_IRQn, 1U);
+  TPM_DRV_Init(tpmTmr1_IDX, &tpmTmr1_InitConfig0);
+  TPM_DRV_SetClock(tpmTmr1_IDX, kTpmClockSourceModuleClk, kTpmDividedBy16);
+  TPM_DRV_CounterStart(tpmTmr1_IDX, kTpmCountingUp, 60000U,true);      
+  /*! tpmTmr1 Auto initialization end */
+  
+  /*! DbgCs1 Auto initialization start */
+  /* Enable clock source for LPSCI - bitfield UART0 within SIM_SOPT2 */
+  CLOCK_SYS_SetLpsciSrc(BOARD_DEBUG_UART_INSTANCE,kClockLpsciSrcPllFllSel);
+  /* Debug console initialization */
+  DbgConsole_Init(BOARD_DEBUG_UART_INSTANCE, DEBUG_UART_BAUD, DEBUG_UART_TYPE);
+  /*! DbgCs1 Auto initialization end */
 }
 #endif /* CPU_COMPONENTS_INIT */
 

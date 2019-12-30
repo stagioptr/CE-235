@@ -27,7 +27,10 @@ S_UPPER_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Static_Code/System \
+Sources/scheduler/src \
 Sources \
+Sources/peripherals/RGB_LED \
+Sources/osa_ex/src \
 SDK/rtos/FreeRTOS/src \
 SDK/rtos/FreeRTOS/port/gcc \
 SDK/platform/utilities/src \
@@ -36,16 +39,16 @@ SDK/platform/system/src/clock \
 SDK/platform/system/src/clock/MKL25Z4 \
 SDK/platform/osa/src \
 SDK/platform/hal/src/uart \
+SDK/platform/hal/src/tpm \
 SDK/platform/hal/src/sim/MKL25Z4 \
 SDK/platform/hal/src/rtc \
 SDK/platform/hal/src/port \
 SDK/platform/hal/src/osc \
 SDK/platform/hal/src/mcg \
-SDK/platform/hal/src/lptmr \
 SDK/platform/hal/src/lpsci \
 SDK/platform/hal/src/gpio \
+SDK/platform/drivers/src/tpm \
 SDK/platform/drivers/src/rtc \
-SDK/platform/drivers/src/lptmr \
 SDK/platform/drivers/src/gpio \
 SDK/platform/devices \
 SDK/platform/devices/MKL25Z4/startup \

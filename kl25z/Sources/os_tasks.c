@@ -42,6 +42,7 @@ extern "C" {
 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "ledrgb_hal.h"
 
 /*
 ** ===================================================================
@@ -62,10 +63,13 @@ void Task1Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-  	if( OSA_SemaWait( &task50HzSema, OSA_WAIT_FOREVER ) == kStatus_OSA_Success ) {
+  	if( OSA_SemaWait( &task1HzSema, 1002 ) == kStatus_OSA_Success ) {
   		OSA_TimeDelay(10);                 /* Example code (for task release) */
+  		GPIO_DRV_TogglePinOutput(Probe_Scheduler_Error);
   	}
-
+  	else {
+    	Sched_Error_Catch(2);				// Error Management.
+  	}
 
 
 
@@ -93,9 +97,12 @@ void Task2Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-  	if( OSA_SemaWait( &task25HzSema, OSA_WAIT_FOREVER ) == kStatus_OSA_Success ) {
+  	if( OSA_SemaWait( &task2HzSema, 502 ) == kStatus_OSA_Success ) {
   		OSA_TimeDelay(10);                 /* Example code (for task release) */
-  	}
+		}
+		else {
+			Sched_Error_Catch(2);				// Error Management.
+		}
 
 
 
@@ -124,10 +131,12 @@ void Task10Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-  	if( OSA_SemaWait( &task10HzSema, OSA_WAIT_FOREVER ) == kStatus_OSA_Success ) {
+  	if( OSA_SemaWait( &task10HzSema, 102 ) == kStatus_OSA_Success ) {
   		OSA_TimeDelay(10);                 /* Example code (for task release) */
-  	}
-
+		}
+		else {
+			Sched_Error_Catch(2);				// Error Management.
+		}
 
 
 
@@ -155,10 +164,12 @@ void Task25Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-  	if( OSA_SemaWait( &task2HzSema, OSA_WAIT_FOREVER ) == kStatus_OSA_Success ) {
+  	if( OSA_SemaWait( &task25HzSema, 42 ) == kStatus_OSA_Success ) {
   		OSA_TimeDelay(10);                 /* Example code (for task release) */
-  	}
-
+		}
+		else {
+			Sched_Error_Catch(2);				// Error Management.
+		}
 
 
 
@@ -186,10 +197,12 @@ void Task50Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-  	if( OSA_SemaWait( &task1HzSema, OSA_WAIT_FOREVER ) == kStatus_OSA_Success ) {
+  	if( OSA_SemaWait( &task50HzSema, 22 ) == kStatus_OSA_Success ) {
   		OSA_TimeDelay(10);                 /* Example code (for task release) */
-  	}
-
+		}
+		else {
+			Sched_Error_Catch(2);				// Error Management.
+		}
 
 
 
@@ -199,6 +212,19 @@ void Task50Hz_task(os_task_param_t task_init_data)
 }
 
 /* END os_tasks */
+
+/*
+** ===================================================================
+**     Callback    : Sched_Error_Catch
+**     Description : Error.
+**     Parameters  :
+**     Returns : Nothing
+** ===================================================================
+*/
+void Sched_Error_Catch( uint32_t err_code )
+{
+	ledrgb_setRedLed();
+}
 
 #ifdef __cplusplus
 }  /* extern "C" */

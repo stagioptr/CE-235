@@ -46,11 +46,11 @@
       <Path>N:\kl25z\SDK\platform\hal\src\sim\MKL25Z4\</Path>
       <Path>N:\kl25z\SDK\platform\system\src\clock\MKL25Z4\</Path>
       <Path>N:\kl25z\SDK\platform\drivers\inc\</Path>
+      <Path>N:\kl25z\SDK\platform\utilities\src\</Path>
+      <Path>N:\kl25z\SDK\platform\utilities\inc\</Path>
       <Path>N:\kl25z\SDK\platform\CMSIS\Include\</Path>
       <Path>N:\kl25z\SDK\platform\devices\</Path>
       <Path>N:\kl25z\SDK\platform\devices\MKL25Z4\include\</Path>
-      <Path>N:\kl25z\SDK\platform\utilities\src\</Path>
-      <Path>N:\kl25z\SDK\platform\utilities\inc\</Path>
       <Path>N:\kl25z\SDK\platform\devices\MKL25Z4\startup\</Path>
       <Path>N:\kl25z\Generated_Code\SDK\platform\devices\MKL25Z4\startup\</Path>
       <Path>N:\kl25z\Sources\</Path>
@@ -61,16 +61,16 @@
       <Path>N:\kl25z\SDK\platform\devices\MKL25Z4\startup\</Path>
       <Path>N:\kl25z\SDK\platform\devices\</Path>
       <Path>N:\kl25z\SDK\platform\drivers\src\gpio\</Path>
-      <Path>N:\kl25z\SDK\platform\drivers\src\lptmr\</Path>
       <Path>N:\kl25z\SDK\platform\drivers\src\rtc\</Path>
+      <Path>N:\kl25z\SDK\platform\drivers\src\tpm\</Path>
       <Path>N:\kl25z\SDK\platform\hal\src\gpio\</Path>
       <Path>N:\kl25z\SDK\platform\hal\src\lpsci\</Path>
-      <Path>N:\kl25z\SDK\platform\hal\src\lptmr\</Path>
       <Path>N:\kl25z\SDK\platform\hal\src\mcg\</Path>
       <Path>N:\kl25z\SDK\platform\hal\src\osc\</Path>
       <Path>N:\kl25z\SDK\platform\hal\src\port\</Path>
       <Path>N:\kl25z\SDK\platform\hal\src\rtc\</Path>
       <Path>N:\kl25z\SDK\platform\hal\src\sim\MKL25Z4\</Path>
+      <Path>N:\kl25z\SDK\platform\hal\src\tpm\</Path>
       <Path>N:\kl25z\SDK\platform\hal\src\uart\</Path>
       <Path>N:\kl25z\SDK\platform\osa\src\</Path>
       <Path>N:\kl25z\SDK\platform\system\src\clock\MKL25Z4\</Path>
@@ -80,6 +80,8 @@
       <Path>N:\kl25z\SDK\rtos\FreeRTOS\port\gcc\</Path>
       <Path>N:\kl25z\SDK\rtos\FreeRTOS\src\</Path>
       <Path>N:\kl25z\Sources\</Path>
+      <Path>N:\kl25z\Sources\osa_ex\src\</Path>
+      <Path>N:\kl25z\Sources\peripherals\RGB_LED\</Path>
       <Path>N:\kl25z\Static_Code\System\</Path>
       <Path>N:\kl25z\SDK\platform\devices\MKL25Z4\startup\gcc\</Path>
     </SourceCodePaths>
@@ -87,6 +89,7 @@
   <FILES>
     <GeneratedCs>
       <PathName>N:\kl25z\Generated_Code\Cpu.c</PathName>
+      <PathName>N:\kl25z\Generated_Code\DbgCs1.c</PathName>
       <PathName>N:\kl25z\Generated_Code\MainTask.c</PathName>
       <PathName>N:\kl25z\Generated_Code\Task10Hz.c</PathName>
       <PathName>N:\kl25z\Generated_Code\Task1Hz.c</PathName>
@@ -97,25 +100,25 @@
       <PathName>N:\kl25z\Generated_Code\free_rtos.c</PathName>
       <PathName>N:\kl25z\Generated_Code\gpio1.c</PathName>
       <PathName>N:\kl25z\Generated_Code\hardware_init.c</PathName>
-      <PathName>N:\kl25z\Generated_Code\lpTmr1.c</PathName>
       <PathName>N:\kl25z\Generated_Code\osa1.c</PathName>
       <PathName>N:\kl25z\Generated_Code\pin_init.c</PathName>
+      <PathName>N:\kl25z\Generated_Code\tpmTmr1.c</PathName>
       <PathName>N:\kl25z\SDK\platform\devices\MKL25Z4\startup\system_MKL25Z4.c</PathName>
       <PathName>N:\kl25z\SDK\platform\devices\startup.c</PathName>
       <PathName>N:\kl25z\SDK\platform\drivers\src\gpio\fsl_gpio_common.c</PathName>
       <PathName>N:\kl25z\SDK\platform\drivers\src\gpio\fsl_gpio_driver.c</PathName>
-      <PathName>N:\kl25z\SDK\platform\drivers\src\lptmr\fsl_lptmr_common.c</PathName>
-      <PathName>N:\kl25z\SDK\platform\drivers\src\lptmr\fsl_lptmr_driver.c</PathName>
       <PathName>N:\kl25z\SDK\platform\drivers\src\rtc\fsl_rtc_common.c</PathName>
+      <PathName>N:\kl25z\SDK\platform\drivers\src\tpm\fsl_tpm_common.c</PathName>
+      <PathName>N:\kl25z\SDK\platform\drivers\src\tpm\fsl_tpm_driver.c</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\src\gpio\fsl_gpio_hal.c</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\src\lpsci\fsl_lpsci_hal.c</PathName>
-      <PathName>N:\kl25z\SDK\platform\hal\src\lptmr\fsl_lptmr_hal.c</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\src\mcg\fsl_mcg_hal.c</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\src\mcg\fsl_mcg_hal_modes.c</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\src\osc\fsl_osc_hal.c</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\src\port\fsl_port_hal.c</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\src\rtc\fsl_rtc_hal.c</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\src\sim\MKL25Z4\fsl_sim_hal_MKL25Z4.c</PathName>
+      <PathName>N:\kl25z\SDK\platform\hal\src\tpm\fsl_tpm_hal.c</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\src\uart\fsl_uart_hal.c</PathName>
       <PathName>N:\kl25z\SDK\platform\osa\src\fsl_os_abstraction_free_rtos.c</PathName>
       <PathName>N:\kl25z\SDK\platform\system\src\clock\MKL25Z4\fsl_clock_MKL25Z4.c</PathName>
@@ -140,11 +143,14 @@
       <PathName>N:\kl25z\Sources\Events.c</PathName>
       <PathName>N:\kl25z\Sources\main.c</PathName>
       <PathName>N:\kl25z\Sources\os_tasks.c</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\src\fsl_os_abstraction_ex_free_rtos.c</PathName>
+      <PathName>N:\kl25z\Sources\peripherals\RGB_LED\ledrgb_hal.c</PathName>
       <PathName>N:\kl25z\Sources\rtos_main_task.c</PathName>
       <PathName>N:\kl25z\Static_Code\System\PE_low_level_init.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
       <PathName>N:\kl25z\Generated_Code\Cpu.h</PathName>
+      <PathName>N:\kl25z\Generated_Code\DbgCs1.h</PathName>
       <PathName>N:\kl25z\Generated_Code\MainTask.h</PathName>
       <PathName>N:\kl25z\Generated_Code\PE_low_level_init.h</PathName>
       <PathName>N:\kl25z\Generated_Code\SDK\platform\devices\MKL25Z4\startup\system_MKL25Z4.h</PathName>
@@ -158,9 +164,9 @@
       <PathName>N:\kl25z\Generated_Code\clockMan1.h</PathName>
       <PathName>N:\kl25z\Generated_Code\free_rtos.h</PathName>
       <PathName>N:\kl25z\Generated_Code\gpio1.h</PathName>
-      <PathName>N:\kl25z\Generated_Code\lpTmr1.h</PathName>
       <PathName>N:\kl25z\Generated_Code\osa1.h</PathName>
       <PathName>N:\kl25z\Generated_Code\pin_init.h</PathName>
+      <PathName>N:\kl25z\Generated_Code\tpmTmr1.h</PathName>
       <PathName>N:\kl25z\SDK\platform\CMSIS\Include\arm_common_tables.h</PathName>
       <PathName>N:\kl25z\SDK\platform\CMSIS\Include\arm_const_structs.h</PathName>
       <PathName>N:\kl25z\SDK\platform\CMSIS\Include\arm_math.h</PathName>
@@ -175,16 +181,16 @@
       <PathName>N:\kl25z\SDK\platform\devices\fsl_device_registers.h</PathName>
       <PathName>N:\kl25z\SDK\platform\devices\startup.h</PathName>
       <PathName>N:\kl25z\SDK\platform\drivers\inc\fsl_gpio_driver.h</PathName>
-      <PathName>N:\kl25z\SDK\platform\drivers\inc\fsl_lptmr_driver.h</PathName>
+      <PathName>N:\kl25z\SDK\platform\drivers\inc\fsl_tpm_driver.h</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_gpio_hal.h</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_lpsci_hal.h</PathName>
-      <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_lptmr_hal.h</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_mcg_hal.h</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_mcg_hal_modes.h</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_osc_hal.h</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_port_hal.h</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_rtc_hal.h</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_sim_hal.h</PathName>
+      <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_tpm_hal.h</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\inc\fsl_uart_hal.h</PathName>
       <PathName>N:\kl25z\SDK\platform\hal\src\sim\MKL25Z4\fsl_sim_hal_MKL25Z4.h</PathName>
       <PathName>N:\kl25z\SDK\platform\osa\inc\fsl_os_abstraction.h</PathName>
@@ -212,6 +218,9 @@
       <PathName>N:\kl25z\SDK\rtos\FreeRTOS\port\gcc\portmacro.h</PathName>
       <PathName>N:\kl25z\Sources\Events.h</PathName>
       <PathName>N:\kl25z\Sources\os_tasks.h</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\inc\fsl_os_abstraction_ex.h</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\inc\fsl_os_abstraction_ex_free_rtos.h</PathName>
+      <PathName>N:\kl25z\Sources\peripherals\RGB_LED\ledrgb_hal.h</PathName>
       <PathName>N:\kl25z\Sources\rtos_main_task.h</PathName>
     </GeneratedHs>
     <GeneratedASMs>

@@ -38,27 +38,36 @@ extern "C" {
 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
-uint32_t lptimerCount50Hertz = 0;
+uint32_t lptmr_tick_count = 0;
 
+#ifdef tpmTmr1_IDX
 /*
 ** ===================================================================
-**     Callback    : lpTmr1_OnTimerCompare
-**     Description : This callback is called when timer interrupt
-**     occurs.
+**     Interrupt handler : TPM0_IRQHandler
+**
+**     Description :
+**         User interrupt service routine.
 **     Parameters  : None
-**     Returns : Nothing
+**     Returns     : Nothing
 ** ===================================================================
 */
-void lpTmr1_OnTimerCompare(void)
+void TPM0_IRQHandler(void)
 {
+  TPM_DRV_IRQHandler(tpmTmr1_IDX);
   /* Write your code here ... */
-	lptimerCount50Hertz++;
-	if( lptimerCount50Hertz >= 10 ) {
-		lptimerCount50Hertz = 0;
-		if( OSA_SemaPost( &lowPowerTimerSema ) != kStatus_OSA_Success )
-			while(1);
-	}
+	if( OSA_SemaPost( &lowPowerTimerSema ) != kStatus_OSA_Success )
+		Sched_Error_Catch(4);				// Error Management.
 }
+#else
+  /* This IRQ handler is not used by tpmTmr1 component. The purpose may be
+   * that the component has been removed or disabled. It is recommended to
+   * remove this handler because Processor Expert cannot modify it according to
+   * possible new request (e.g. in case that another component uses this
+   * interrupt vector). */
+  #warning This IRQ handler is not used by tpmTmr1 component.\
+           It is recommended to remove this because Processor Expert cannot\
+           modify it according to possible new request.
+#endif
 
 /* END Events */
 

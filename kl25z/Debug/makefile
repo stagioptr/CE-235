@@ -9,6 +9,9 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include Static_Code/System/subdir.mk
+-include Sources/scheduler/src/subdir.mk
+-include Sources/peripherals/RGB_LED/subdir.mk
+-include Sources/osa_ex/src/subdir.mk
 -include Sources/subdir.mk
 -include SDK/rtos/FreeRTOS/src/subdir.mk
 -include SDK/rtos/FreeRTOS/port/gcc/subdir.mk
@@ -18,16 +21,16 @@ RM := rm -rf
 -include SDK/platform/system/src/clock/subdir.mk
 -include SDK/platform/osa/src/subdir.mk
 -include SDK/platform/hal/src/uart/subdir.mk
+-include SDK/platform/hal/src/tpm/subdir.mk
 -include SDK/platform/hal/src/sim/MKL25Z4/subdir.mk
 -include SDK/platform/hal/src/rtc/subdir.mk
 -include SDK/platform/hal/src/port/subdir.mk
 -include SDK/platform/hal/src/osc/subdir.mk
 -include SDK/platform/hal/src/mcg/subdir.mk
--include SDK/platform/hal/src/lptmr/subdir.mk
 -include SDK/platform/hal/src/lpsci/subdir.mk
 -include SDK/platform/hal/src/gpio/subdir.mk
+-include SDK/platform/drivers/src/tpm/subdir.mk
 -include SDK/platform/drivers/src/rtc/subdir.mk
--include SDK/platform/drivers/src/lptmr/subdir.mk
 -include SDK/platform/drivers/src/gpio/subdir.mk
 -include SDK/platform/devices/MKL25Z4/startup/gcc/subdir.mk
 -include SDK/platform/devices/MKL25Z4/startup/subdir.mk

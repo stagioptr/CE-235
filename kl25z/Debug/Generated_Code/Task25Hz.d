@@ -39,17 +39,20 @@ Generated_Code/Task25Hz.o: ../Generated_Code/Task25Hz.c \
  N:/kl25z/SDK/rtos/FreeRTOS/include/timers.h \
  N:/kl25z/SDK/platform/hal/inc/fsl_rtc_hal.h \
  N:/kl25z/SDK/platform/hal/inc/fsl_port_hal.h \
- N:/kl25z/SDK/platform/hal/inc/fsl_lptmr_hal.h \
- N:/kl25z/SDK/platform/drivers/inc/fsl_lptmr_driver.h \
  N:/kl25z/SDK/platform/hal/inc/fsl_gpio_hal.h \
  N:/kl25z/SDK/platform/drivers/inc/fsl_gpio_driver.h \
+ N:/kl25z/SDK/platform/hal/inc/fsl_tpm_hal.h \
+ N:/kl25z/SDK/platform/drivers/inc/fsl_tpm_driver.h \
+ N:/kl25z/SDK/platform/hal/inc/fsl_uart_hal.h \
+ N:/kl25z/SDK/platform/hal/inc/fsl_lpsci_hal.h \
+ N:/kl25z/SDK/platform/utilities/inc/fsl_debug_console.h \
  N:/kl25z/Generated_Code/pin_init.h N:/kl25z/Generated_Code/osa1.h \
  N:/kl25z/Generated_Code/free_rtos.h N:/kl25z/Generated_Code/MainTask.h \
- N:/kl25z/Generated_Code/lpTmr1.h N:/kl25z/Generated_Code/clockMan1.h \
- N:/kl25z/Generated_Code/gpio1.h N:/kl25z/Generated_Code/Task50Hz.h \
- N:/kl25z/Generated_Code/Task25Hz.h N:/kl25z/Generated_Code/Task10Hz.h \
- N:/kl25z/Generated_Code/Task2Hz.h N:/kl25z/Generated_Code/Task1Hz.h \
- ../Generated_Code/Task25Hz.h
+ N:/kl25z/Generated_Code/gpio1.h N:/kl25z/Generated_Code/clockMan1.h \
+ N:/kl25z/Generated_Code/Task50Hz.h N:/kl25z/Generated_Code/Task25Hz.h \
+ N:/kl25z/Generated_Code/Task10Hz.h N:/kl25z/Generated_Code/Task2Hz.h \
+ N:/kl25z/Generated_Code/Task1Hz.h N:/kl25z/Generated_Code/tpmTmr1.h \
+ N:/kl25z/Generated_Code/DbgCs1.h ../Generated_Code/Task25Hz.h
 
 N:/kl25z/Sources/os_tasks.h:
 
@@ -135,13 +138,19 @@ N:/kl25z/SDK/platform/hal/inc/fsl_rtc_hal.h:
 
 N:/kl25z/SDK/platform/hal/inc/fsl_port_hal.h:
 
-N:/kl25z/SDK/platform/hal/inc/fsl_lptmr_hal.h:
-
-N:/kl25z/SDK/platform/drivers/inc/fsl_lptmr_driver.h:
-
 N:/kl25z/SDK/platform/hal/inc/fsl_gpio_hal.h:
 
 N:/kl25z/SDK/platform/drivers/inc/fsl_gpio_driver.h:
+
+N:/kl25z/SDK/platform/hal/inc/fsl_tpm_hal.h:
+
+N:/kl25z/SDK/platform/drivers/inc/fsl_tpm_driver.h:
+
+N:/kl25z/SDK/platform/hal/inc/fsl_uart_hal.h:
+
+N:/kl25z/SDK/platform/hal/inc/fsl_lpsci_hal.h:
+
+N:/kl25z/SDK/platform/utilities/inc/fsl_debug_console.h:
 
 N:/kl25z/Generated_Code/pin_init.h:
 
@@ -151,11 +160,9 @@ N:/kl25z/Generated_Code/free_rtos.h:
 
 N:/kl25z/Generated_Code/MainTask.h:
 
-N:/kl25z/Generated_Code/lpTmr1.h:
+N:/kl25z/Generated_Code/gpio1.h:
 
 N:/kl25z/Generated_Code/clockMan1.h:
-
-N:/kl25z/Generated_Code/gpio1.h:
 
 N:/kl25z/Generated_Code/Task50Hz.h:
 
@@ -166,5 +173,9 @@ N:/kl25z/Generated_Code/Task10Hz.h:
 N:/kl25z/Generated_Code/Task2Hz.h:
 
 N:/kl25z/Generated_Code/Task1Hz.h:
+
+N:/kl25z/Generated_Code/tpmTmr1.h:
+
+N:/kl25z/Generated_Code/DbgCs1.h:
 
 ../Generated_Code/Task25Hz.h:

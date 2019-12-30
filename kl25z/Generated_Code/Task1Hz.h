@@ -7,7 +7,7 @@
 **     Version     : Component 1.3.0, Driver 01.00, CPU db: 3.00.000
 **     Repository  : KSDK 1.3.0
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-12-12, 13:25, # CodeGen: 16
+**     Date/Time   : 2019-12-20, 22:19, # CodeGen: 22
 **     Contents    :
 **         Init - osa_status_t Task1Hz_Init(void);
 **
@@ -66,7 +66,7 @@
 /* Task1Hz task stack size */  
 #define TASK1HZ_TASK_STACK_SIZE        256U
 /* Task1Hz task priority value */  
-#define TASK1HZ_TASK_PRIORITY          5U
+#define TASK1HZ_TASK_PRIORITY          1U
 /*
 ** ===================================================================
 **     Method      :  Init (component OS_Task)

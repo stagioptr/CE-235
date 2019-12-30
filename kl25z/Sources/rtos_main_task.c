@@ -38,6 +38,34 @@ extern "C" {
 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+typedef enum {
+	SCHEDULER_50_HZ = 0,
+	SCHEDULER_25_HZ,
+	SCHEDULER_10_HZ,
+	SCHEDULER_2_HZ,
+	SCHEDULER_1_HZ,
+	SCHEDULER_FREQ_LENGTH
+}scheduler_frequency_e;
+
+uint32_t scheduler_div[SCHEDULER_FREQ_LENGTH] = {
+	1,
+	2,
+	5,
+	25,
+	50
+};
+
+semaphore_t *schedulerSema[SCHEDULER_FREQ_LENGTH] = {
+	&task50HzSema,
+	&task25HzSema,
+	&task10HzSema,
+	&task2HzSema,
+	&task1HzSema
+};
+
+uint32_t scheduler_count_a[SCHEDULER_FREQ_LENGTH] = {
+	0, 0, 0, 0, 0
+};
 
 /* Initialization of Processor Expert components function prototype */
 #ifdef MainTask_PEX_RTOS_COMPONENTS_INIT
@@ -56,14 +84,13 @@ extern void PEX_components_init(void);
 void main_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
-	uint32_t schedulerCount = 0;
+//	uint32_t schedulerCount = 0;
 
   /* Initialization of Processor Expert components (when some RTOS is active). DON'T REMOVE THIS CODE!!! */
 #ifdef MainTask_PEX_RTOS_COMPONENTS_INIT
   PEX_components_init();
 #endif
   /* End of Processor Expert components initialization.  */
-  LPTMR_DRV_Start(lpTmr1_IDX);
 
 #ifdef PEX_USE_RTOS
   while (1) {
@@ -72,41 +99,52 @@ void main_task(os_task_param_t task_init_data)
 
 
     if( OSA_SemaWait( &lowPowerTimerSema, 22 ) == kStatus_OSA_Success ) {
-      GPIO_DRV_TogglePinOutput(Probe_Scheduler_Tick);
+    	GPIO_DRV_TogglePinOutput(Probe_Scheduler_Tick);
 
-      schedulerCount++;
+    	for( scheduler_frequency_e loop = SCHEDULER_50_HZ; loop<SCHEDULER_FREQ_LENGTH; loop++ ) {
+    		scheduler_count_a[loop]++;
 
-      if( OSA_SemaPost( &task50HzSema ) == kStatus_OSA_Success ) {
+    		if( scheduler_count_a[loop] >= scheduler_div[loop]) {
+    			scheduler_count_a[loop] = 0;
 
+    			if( OSA_SemaPost( schedulerSema[loop] ) != kStatus_OSA_Success ) {
+						Sched_Error_Catch(3);				// Error Management.
+					}
+    		}
+    	}
+/*      schedulerCount++;
+
+      if( OSA_SemaPost( &task50HzSema ) != kStatus_OSA_Success ) {
+      	Sched_Error_Catch(3);				// Error Management.
       }
 
       if( schedulerCount % 2 ) {
-      	if( OSA_SemaPost( &task25HzSema ) == kStatus_OSA_Success ) {
-
+      	if( OSA_SemaPost( &task25HzSema ) != kStatus_OSA_Success ) {
+      		Sched_Error_Catch(3);				// Error Management.
 				}
       }
 
       if( schedulerCount % 5 ) {
-				if( OSA_SemaPost( &task10HzSema ) == kStatus_OSA_Success ) {
-
+				if( OSA_SemaPost( &task10HzSema ) != kStatus_OSA_Success ) {
+			  	Sched_Error_Catch(3);				// Error Management.
 				}
 			}
 
       if( schedulerCount % 25 ) {
-				if( OSA_SemaPost( &task2HzSema ) == kStatus_OSA_Success ) {
-
+				if( OSA_SemaPost( &task2HzSema ) != kStatus_OSA_Success ) {
+			  	Sched_Error_Catch(3);				// Error Management.
 				}
 			}
 
       if( schedulerCount % 50 ) {
-				if( OSA_SemaPost( &task1HzSema ) == kStatus_OSA_Success ) {
-
+				if( OSA_SemaPost( &task1HzSema ) != kStatus_OSA_Success ) {
+			  	Sched_Error_Catch(3);				// Error Management.
 				}
 			}
-
+*/
     }
     else {
-    	GPIO_DRV_TogglePinOutput(Probe_Scheduler_Error);
+
     	// catch error.
     }
 

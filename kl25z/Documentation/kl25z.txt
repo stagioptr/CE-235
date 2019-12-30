@@ -159,6 +159,13 @@ Module "pin_init"  (component PinSettings)
    - pin_init_deinit_swd_pins -SWD method de-configures registers according to settings of routing. This method is enabled only 
                 if any pin of corresponding peripheral type is selected. Selected pins are either user selected pins or pins 
                 selected in pin items in components. Call this method code to un-route desired pins into SWD peripheral.
+   - pin_init_init_uart0_pins -UART0 method configures registers according to settings  of routing and electrical features. 
+                This method is enabled only if any pin of corresponding peripheral type is selected. Selected pins are either 
+                user selected pins or pins selected in pin items in components. Call this method code to route desired pins 
+                into UART0 peripheral.
+   - pin_init_deinit_uart0_pins -UART0 method de-configures registers according to settings of routing. This method is enabled 
+                only if any pin of corresponding peripheral type is selected. Selected pins are either user selected pins or 
+                pins selected in pin items in components. Call this method code to un-route desired pins into UART0 peripheral.
 
 Module "intMan1"   (component fsl_interrupt_manager)
    - intMan1_INT_SYS_InstallHandler -Installs an interrupt handler routine for a given IRQ number.
@@ -203,18 +210,6 @@ Module "osa1"      (component fsl_os_abstraction)
    - osa1_OSA_Init -Initializes the RTOS services.
    - osa1_OSA_Start -Starts the RTOS.
 
-Module "lpTmr1"    (component fsl_lptmr)
-   - lpTmr1_LPTMR_DRV_Init -Initializes the LPTMR driver.
-   - lpTmr1_LPTMR_DRV_Deinit -Deinitializes the LPTMR driver.
-   - lpTmr1_LPTMR_DRV_Start -Starts the LPTMR counter.
-   - lpTmr1_LPTMR_DRV_Stop -Stops the LPTMR counter.
-   - lpTmr1_LPTMR_DRV_SetTimerPeriodUs -Configures the LPTMR timer period in microseconds.
-   - lpTmr1_LPTMR_DRV_GetCurrentTimeUs -Gets the current LPTMR time in microseconds.
-   - lpTmr1_LPTMR_DRV_SetPulsePeriodCount -Sets the pulse period value.
-   - lpTmr1_LPTMR_DRV_GetCurrentPulseCount -Gets the current pulse count.
-   - lpTmr1_LPTMR_DRV_InstallCallback -Installs the user-defined callback in the LPTMR module.
-   - lpTmr1_LPTMR_DRV_IRQHandler -Driver-defined ISR in the LPTMR module.
-
 Module "gpio1"     (component fsl_gpio)
    - gpio1_GPIO_DRV_Init -Initializes all GPIO pins used by the board.
    - gpio1_GPIO_DRV_InputPinInit -Initializes one GPIO input pin used by the board.
@@ -243,6 +238,31 @@ Module "Task2Hz"   (component OS_Task)
 
 Module "Task1Hz"   (component OS_Task)
    - Task1Hz_Init -Creates and starts a task.
+
+Module "tpmTmr1"   (component fsl_tpm)
+   - tpmTmr1_TPM_DRV_Init -Initializes the TPM driver.
+   - tpmTmr1_TPM_DRV_PwmStop -Stops the channel PWM.
+   - tpmTmr1_TPM_DRV_PwmStart -Configures the duty cycle and frequency and starts outputting PWM on a specified channel.
+   - tpmTmr1_TPM_DRV_SetTimeOverflowIntCmd -Enables or disables the timer overflow interrupt.
+   - tpmTmr1_TPM_DRV_SetChnIntCmd -Enables or disables the channel interrupt.
+   - tpmTmr1_TPM_DRV_SetClock -Sets the TPM clock source.
+   - tpmTmr1_TPM_DRV_GetClock -Gets the TPM clock frequency.
+   - tpmTmr1_TPM_DRV_CounterStart -Starts the TPM counter.
+   - tpmTmr1_TPM_DRV_CounterStop -Stops the TPM counter.
+   - tpmTmr1_TPM_DRV_CounterRead -Reads back the current value of the TPM counter.
+   - tpmTmr1_TPM_DRV_InputCaptureEnable -TPM input capture mode setup.
+   - tpmTmr1_TPM_DRV_GetChnVal -Reads back the current value of the TPM channel value.
+   - tpmTmr1_TPM_DRV_OutputCompareEnable -TPM output compare mode setup.
+   - tpmTmr1_TPM_DRV_Deinit -Shuts down the TPM driver.
+   - tpmTmr1_TPM_DRV_IRQHandler -Action to take when an TPM interrupt is triggered.
+
+Module "DbgCs1"    (component fsl_debug_console)
+   - DbgCs1_DbgConsole_Init -Init the UART/LPUART used for debug messages.
+   - DbgCs1_DbgConsole_DeInit -Deinit the UART/LPUART used for debug messages.
+   - DbgCs1_debug_printf -Prints formatted output to the standard output stream.
+   - DbgCs1_debug_putchar -Writes a character to stdout.
+   - DbgCs1_debug_scanf -Reads formatted data from the standard input stream.
+   - DbgCs1_debug_getchar -Reads a character from standard input.
 
 Module "Cpu"       (component MKL25Z128LK4_4SDK)
    - Cpu_SystemInit -This method configures the oscillator (PLL) that is part of the microcontroller device. SystemInit is 

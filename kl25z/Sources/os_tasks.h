@@ -24,11 +24,11 @@
 ** @brief
 **         This is user's event module.
 **         Put your event handler code here.
-*/         
+*/
 /*!
 **  @addtogroup os_tasks_module os_tasks module documentation
 **  @{
-*/         
+*/
 
 #ifndef __os_tasks_H
 #define __os_tasks_H
@@ -40,17 +40,18 @@
 #include "osa1.h"
 #include "free_rtos.h"
 #include "MainTask.h"
-#include "lpTmr1.h"
 #include "gpio1.h"
 #include "Task50Hz.h"
 #include "Task25Hz.h"
 #include "Task10Hz.h"
 #include "Task2Hz.h"
 #include "Task1Hz.h"
+#include "tpmTmr1.h"
+#include "DbgCs1.h"
 
 #ifdef __cplusplus
 extern "C" {
-#endif 
+#endif
 
 /*
 ** ===================================================================
@@ -110,11 +111,21 @@ void Task50Hz_task(os_task_param_t task_init_data);
 
 /* END os_tasks */
 
+/*
+** ===================================================================
+**     Callback    : Sched_Error_Catch
+**     Description : Error.
+**     Parameters  :
+**     Returns : Nothing
+** ===================================================================
+*/
+void Sched_Error_Catch( uint32_t err_code );
+
 #ifdef __cplusplus
 }  /* extern "C" */
-#endif 
+#endif
 
-#endif 
+#endif
 /* ifndef __os_tasks_H*/
 /*!
 ** @}

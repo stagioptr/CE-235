@@ -175,22 +175,6 @@
       <EmptySection_DummyValue />
     </Events>
   </Bean>
-  <Bean name="lpTmr1" type="fsl_lptmr">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="lpTmr1" />
-      <Device v="LPTMR0" />
-      <Counter_register v="LPTMR0_CNR" />
-      <Compare_register v="LPTMR0_CMR" />
-      <Component_version v="1.3.0" />
-    </Properties>
-    <Methods>
-      <EmptySection_DummyValue />
-    </Methods>
-    <Events>
-      <EmptySection_DummyValue />
-    </Events>
-  </Bean>
   <Bean name="gpio1" type="fsl_gpio">
     <Enabled v="Y" />
     <Properties>
@@ -260,6 +244,34 @@
     <Enabled v="Y" />
     <Properties>
       <Name v="Task1Hz" />
+      <Component_version v="1.3.0" />
+    </Properties>
+    <Methods>
+      <EmptySection_DummyValue />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="tpmTmr1" type="fsl_tpm">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="tpmTmr1" />
+      <Device v="TPM0" />
+      <Component_version v="1.3.0" />
+    </Properties>
+    <Methods>
+      <EmptySection_DummyValue />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="DbgCs1" type="fsl_debug_console">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="DbgCs1" />
+      <Device v="UART0" />
       <Component_version v="1.3.0" />
     </Properties>
     <Methods>
