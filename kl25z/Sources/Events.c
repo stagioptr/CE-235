@@ -38,7 +38,7 @@ extern "C" {
 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
-uint32_t lptmr_tick_count = 0;
+#include "scheduler.h"
 
 #ifdef tpmTmr1_IDX
 /*

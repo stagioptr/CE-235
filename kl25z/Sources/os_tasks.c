@@ -43,6 +43,7 @@ extern "C" {
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "ledrgb_hal.h"
+#include "scheduler.h"
 
 /*
 ** ===================================================================
@@ -63,7 +64,7 @@ void Task1Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-  	if( OSA_SemaWait( &task1HzSema, 1002 ) == kStatus_OSA_Success ) {
+  	if( OSA_SemaWait( scheduler_task_pSemaphore(4), 1002 ) == kStatus_OSA_Success ) {
   		OSA_TimeDelay(10);                 /* Example code (for task release) */
   		GPIO_DRV_TogglePinOutput(Probe_Scheduler_Error);
   	}
@@ -97,7 +98,7 @@ void Task2Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-  	if( OSA_SemaWait( &task2HzSema, 502 ) == kStatus_OSA_Success ) {
+  	if( OSA_SemaWait( scheduler_task_pSemaphore(3), 502 ) == kStatus_OSA_Success ) {
   		OSA_TimeDelay(10);                 /* Example code (for task release) */
 		}
 		else {
@@ -131,7 +132,7 @@ void Task10Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-  	if( OSA_SemaWait( &task10HzSema, 102 ) == kStatus_OSA_Success ) {
+  	if( OSA_SemaWait( scheduler_task_pSemaphore(2), 102 ) == kStatus_OSA_Success ) {
   		OSA_TimeDelay(10);                 /* Example code (for task release) */
 		}
 		else {
@@ -164,7 +165,7 @@ void Task25Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-  	if( OSA_SemaWait( &task25HzSema, 42 ) == kStatus_OSA_Success ) {
+  	if( OSA_SemaWait( scheduler_task_pSemaphore(1), 42 ) == kStatus_OSA_Success ) {
   		OSA_TimeDelay(10);                 /* Example code (for task release) */
 		}
 		else {
@@ -197,7 +198,7 @@ void Task50Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-  	if( OSA_SemaWait( &task50HzSema, 22 ) == kStatus_OSA_Success ) {
+  	if( OSA_SemaWait( scheduler_task_pSemaphore(0), 22 ) == kStatus_OSA_Success ) {
   		OSA_TimeDelay(10);                 /* Example code (for task release) */
 		}
 		else {

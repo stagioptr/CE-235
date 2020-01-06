@@ -119,7 +119,6 @@ void Task50Hz_task(os_task_param_t task_init_data);
 **     Returns : Nothing
 ** ===================================================================
 */
-void Sched_Error_Catch( uint32_t err_code );
 
 #ifdef __cplusplus
 }  /* extern "C" */

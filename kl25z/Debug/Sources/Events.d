@@ -52,7 +52,7 @@ Sources/Events.o: ../Sources/Events.c N:/kl25z/Generated_Code/Cpu.h \
  N:/kl25z/Generated_Code/Task10Hz.h N:/kl25z/Generated_Code/Task2Hz.h \
  N:/kl25z/Generated_Code/Task1Hz.h N:/kl25z/Generated_Code/tpmTmr1.h \
  N:/kl25z/Generated_Code/DbgCs1.h ../Sources/rtos_main_task.h \
- ../Sources/os_tasks.h
+ ../Sources/os_tasks.h N:/kl25z/Sources/scheduler/inc/scheduler.h
 
 N:/kl25z/Generated_Code/Cpu.h:
 
@@ -183,3 +183,5 @@ N:/kl25z/Generated_Code/DbgCs1.h:
 ../Sources/rtos_main_task.h:
 
 ../Sources/os_tasks.h:
+
+N:/kl25z/Sources/scheduler/inc/scheduler.h:

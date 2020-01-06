@@ -55,7 +55,8 @@ Sources/main.o: ../Sources/main.c N:/kl25z/Generated_Code/Cpu.h \
  ../Sources/os_tasks.h \
  N:/kl25z/Sources/osa_ex/inc/fsl_os_abstraction_ex.h \
  N:/kl25z/Sources/osa_ex/inc/fsl_os_abstraction_ex_free_rtos.h \
- N:/kl25z/Sources/peripherals/RGB_LED/ledrgb_hal.h
+ N:/kl25z/Sources/peripherals/RGB_LED/ledrgb_hal.h \
+ N:/kl25z/Sources/scheduler/inc/scheduler.h
 
 N:/kl25z/Generated_Code/Cpu.h:
 
@@ -192,3 +193,5 @@ N:/kl25z/Sources/osa_ex/inc/fsl_os_abstraction_ex.h:
 N:/kl25z/Sources/osa_ex/inc/fsl_os_abstraction_ex_free_rtos.h:
 
 N:/kl25z/Sources/peripherals/RGB_LED/ledrgb_hal.h:
+
+N:/kl25z/Sources/scheduler/inc/scheduler.h:

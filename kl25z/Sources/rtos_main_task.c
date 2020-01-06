@@ -38,6 +38,8 @@ extern "C" {
 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "scheduler.h"
+
 typedef enum {
 	SCHEDULER_50_HZ = 0,
 	SCHEDULER_25_HZ,
@@ -46,22 +48,6 @@ typedef enum {
 	SCHEDULER_1_HZ,
 	SCHEDULER_FREQ_LENGTH
 }scheduler_frequency_e;
-
-uint32_t scheduler_div[SCHEDULER_FREQ_LENGTH] = {
-	1,
-	2,
-	5,
-	25,
-	50
-};
-
-semaphore_t *schedulerSema[SCHEDULER_FREQ_LENGTH] = {
-	&task50HzSema,
-	&task25HzSema,
-	&task10HzSema,
-	&task2HzSema,
-	&task1HzSema
-};
 
 uint32_t scheduler_count_a[SCHEDULER_FREQ_LENGTH] = {
 	0, 0, 0, 0, 0
@@ -104,10 +90,10 @@ void main_task(os_task_param_t task_init_data)
     	for( scheduler_frequency_e loop = SCHEDULER_50_HZ; loop<SCHEDULER_FREQ_LENGTH; loop++ ) {
     		scheduler_count_a[loop]++;
 
-    		if( scheduler_count_a[loop] >= scheduler_div[loop]) {
+    		if( scheduler_count_a[loop] >= scheduler_task_pTimer_division(loop) ) {
     			scheduler_count_a[loop] = 0;
 
-    			if( OSA_SemaPost( schedulerSema[loop] ) != kStatus_OSA_Success ) {
+    			if( OSA_SemaPost( scheduler_task_pSemaphore(loop) ) != kStatus_OSA_Success ) {
 						Sched_Error_Catch(3);				// Error Management.
 					}
     		}

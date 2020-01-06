@@ -49,24 +49,13 @@
 extern "C" {
 #endif
 
-/*
- * Semaphore for control real time scheduler execution frequency.
- */
-extern semaphore_t lowPowerTimerSema;
-
-extern semaphore_t task50HzSema;
-extern semaphore_t task25HzSema;
-extern semaphore_t task10HzSema;
-extern semaphore_t task2HzSema;
-extern semaphore_t task1HzSema;
-
 #ifdef tpmTmr1_IDX
 /*
 ** ===================================================================
 **     Interrupt handler : TPM0_IRQHandler
 **
 **     Description :
-**         User interrupt service routine. 
+**         User interrupt service routine.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================
@@ -74,8 +63,8 @@ extern semaphore_t task1HzSema;
 void TPM0_IRQHandler(void);
 #else
   /* This IRQ handler is not used by tpmTmr1 component. The purpose may be
-   * that the component has been removed or disabled. It is recommended to 
-   * remove this handler because Processor Expert cannot modify it according to 
+   * that the component has been removed or disabled. It is recommended to
+   * remove this handler because Processor Expert cannot modify it according to
    * possible new request (e.g. in case that another component uses this
    * interrupt vector). */
   #warning This IRQ handler is not used by tpmTmr1 component.\

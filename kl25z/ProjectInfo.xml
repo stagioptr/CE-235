@@ -82,6 +82,7 @@
       <Path>N:\kl25z\Sources\</Path>
       <Path>N:\kl25z\Sources\osa_ex\src\</Path>
       <Path>N:\kl25z\Sources\peripherals\RGB_LED\</Path>
+      <Path>N:\kl25z\Sources\scheduler\src\</Path>
       <Path>N:\kl25z\Static_Code\System\</Path>
       <Path>N:\kl25z\SDK\platform\devices\MKL25Z4\startup\gcc\</Path>
     </SourceCodePaths>
@@ -143,9 +144,14 @@
       <PathName>N:\kl25z\Sources\Events.c</PathName>
       <PathName>N:\kl25z\Sources\main.c</PathName>
       <PathName>N:\kl25z\Sources\os_tasks.c</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\src\fsl_os_abstraction_ex_bm.c</PathName>
       <PathName>N:\kl25z\Sources\osa_ex\src\fsl_os_abstraction_ex_free_rtos.c</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\src\fsl_os_abstraction_ex_mqx.c</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\src\fsl_os_abstraction_ex_ucosii.c</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\src\fsl_os_abstraction_ex_ucosiii.c</PathName>
       <PathName>N:\kl25z\Sources\peripherals\RGB_LED\ledrgb_hal.c</PathName>
       <PathName>N:\kl25z\Sources\rtos_main_task.c</PathName>
+      <PathName>N:\kl25z\Sources\scheduler\src\scheduler.c</PathName>
       <PathName>N:\kl25z\Static_Code\System\PE_low_level_init.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
@@ -219,9 +225,14 @@
       <PathName>N:\kl25z\Sources\Events.h</PathName>
       <PathName>N:\kl25z\Sources\os_tasks.h</PathName>
       <PathName>N:\kl25z\Sources\osa_ex\inc\fsl_os_abstraction_ex.h</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\inc\fsl_os_abstraction_ex_bm.h</PathName>
       <PathName>N:\kl25z\Sources\osa_ex\inc\fsl_os_abstraction_ex_free_rtos.h</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\inc\fsl_os_abstraction_ex_mqx.h</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\inc\fsl_os_abstraction_ex_ucosii.h</PathName>
+      <PathName>N:\kl25z\Sources\osa_ex\inc\fsl_os_abstraction_ex_ucosiii.h</PathName>
       <PathName>N:\kl25z\Sources\peripherals\RGB_LED\ledrgb_hal.h</PathName>
       <PathName>N:\kl25z\Sources\rtos_main_task.h</PathName>
+      <PathName>N:\kl25z\Sources\scheduler\inc\scheduler.h</PathName>
     </GeneratedHs>
     <GeneratedASMs>
       <PathName>N:\kl25z\SDK\platform\devices\MKL25Z4\startup\gcc\startup_MKL25Z4.S</PathName>

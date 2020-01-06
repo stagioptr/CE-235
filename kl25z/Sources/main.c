@@ -51,17 +51,34 @@
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "fsl_os_abstraction_ex.h"
 #include "ledrgb_hal.h"
+#include "scheduler.h"
 
 /*
  * Semaphore for control real time scheduler execution frequency.
  */
-semaphore_t lowPowerTimerSema = NULL;
-
 semaphore_t task50HzSema = NULL;
 semaphore_t task25HzSema = NULL;
 semaphore_t task10HzSema = NULL;
 semaphore_t task2HzSema = NULL;
 semaphore_t task1HzSema = NULL;
+
+task_setup_t task_semaphores[] = {
+	{	.semaphore = &task50HzSema,
+		.timer_division = 1
+	},
+	{	.semaphore = &task25HzSema,
+		.timer_division = 2
+	},
+	{	.semaphore = &task10HzSema,
+		.timer_division = 5
+	},
+	{	.semaphore = &task2HzSema,
+		.timer_division = 25
+	},
+	{	.semaphore = &task1HzSema,
+		.timer_division = 50
+	},
+};
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -75,18 +92,7 @@ int main(void)
 
   /* Write your code here */
   /* Initialize  */
-  if( OSA_BinarySemaCreate( &lowPowerTimerSema ) != kStatus_OSA_Success )
-  	Sched_Error_Catch(1);				// Error Management.
-
-  if( OSA_BinarySemaCreate( &task50HzSema ) != kStatus_OSA_Success )
-  	Sched_Error_Catch(1);				// Error Management.
-  if( OSA_BinarySemaCreate( &task25HzSema ) != kStatus_OSA_Success )
-  	Sched_Error_Catch(1);				// Error Management.
-  if( OSA_BinarySemaCreate( &task10HzSema ) != kStatus_OSA_Success )
-  	Sched_Error_Catch(1);				// Error Management.
-  if( OSA_BinarySemaCreate( &task2HzSema ) != kStatus_OSA_Success )
-  	Sched_Error_Catch(1);				// Error Management.
-  if( OSA_BinarySemaCreate( &task1HzSema ) != kStatus_OSA_Success )
+  if( scheduler_setup( task_semaphores, sizeof(task_semaphores)/sizeof(task_setup_t) ) != kStatus_scheduler_Initialized )
   	Sched_Error_Catch(1);				// Error Management.
 
   ledrgb_init();
