@@ -43,7 +43,8 @@ semaphore_t lowPowerTimerSema = NULL;
 task_setup_t *task_setup_pointer = NULL;
 uint32_t max_semaphores = 0;
 
-scheduler_status_t scheduler_setup ( task_setup_t *task_setup, uint32_t length ) {
+scheduler_status_t scheduler_setup ( task_setup_t *task_setup, uint32_t length )
+{
   /* Initialize all user tasks semaphores */
 
 	task_setup_pointer = task_setup;
@@ -52,19 +53,21 @@ scheduler_status_t scheduler_setup ( task_setup_t *task_setup, uint32_t length )
   if( OSA_BinarySemaCreate( &lowPowerTimerSema ) != kStatus_OSA_Success )
   	Sched_Error_Catch(1);				// Error Management.
 
-  for( uint32_t index = 0; index<length; index++ ) {
+  for( uint32_t index = 0; index<length; index++ )
+  {
   	if( OSA_BinarySemaCreate( task_setup[index].semaphore ) != kStatus_OSA_Success )
   		Sched_Error_Catch(1);				// Error Management.
   }
-
 	return kStatus_scheduler_Initialized;
 }
 
-semaphore_t scheduler_task_pSemaphore ( uint32_t index ) {
+semaphore_t scheduler_task_pSemaphore ( uint32_t index )
+{
 	return task_setup_pointer[index].semaphore;
 }
 
-uint32_t scheduler_task_pTimer_division ( uint32_t index ) {
+uint32_t scheduler_task_pTimer_division ( uint32_t index )
+{
 	return task_setup_pointer[index].timer_division;
 }
 

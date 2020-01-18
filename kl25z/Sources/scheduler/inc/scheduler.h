@@ -33,14 +33,16 @@
  */
 extern semaphore_t lowPowerTimerSema;
 
-typedef enum {
+typedef enum
+{
 	kStatus_scheduler_Success                  = 0x00U,
 	kStatus_scheduler_Fail                     = 0x01U,
 	kStatus_scheduler_Timeout                  = 0x02U,
 	kStatus_scheduler_Initialized              = 0x03U
 }scheduler_status_t;
 
-typedef struct {
+typedef struct
+{
 	semaphore_t semaphore;
 	uint32_t timer_division;
 }task_setup_t;
