@@ -6,3 +6,8 @@
 /kl25z/*.g_x
 /kl25z/ProjectInfo.xml
 /kl25z/.cwGeneratedFileSetLog
+
+.metadata/
+RemoteSystemsTempFiles/
+/kl25z/.metadata/
+/kl25z/RemoteSystemsTempFiles/
