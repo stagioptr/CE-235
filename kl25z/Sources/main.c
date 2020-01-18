@@ -62,7 +62,8 @@ semaphore_t task10HzSema = NULL;
 semaphore_t task2HzSema = NULL;
 semaphore_t task1HzSema = NULL;
 
-task_setup_t task_semaphores[] = {
+task_setup_t task_semaphores[] =
+{
 	{	.semaphore = &task50HzSema,
 		.timer_division = 1
 	},

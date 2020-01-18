@@ -40,7 +40,8 @@ extern "C" {
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "scheduler.h"
 
-typedef enum {
+typedef enum
+{
 	SCHEDULER_50_HZ = 0,
 	SCHEDULER_25_HZ,
 	SCHEDULER_10_HZ,
@@ -49,8 +50,9 @@ typedef enum {
 	SCHEDULER_FREQ_LENGTH
 }scheduler_frequency_e;
 
-uint32_t scheduler_count_a[SCHEDULER_FREQ_LENGTH] = {
-	0, 0, 0, 0, 0
+uint32_t scheduler_count_a[SCHEDULER_FREQ_LENGTH] =
+{
+		0, 0, 0, 0, 0
 };
 
 /* Initialization of Processor Expert components function prototype */
@@ -83,22 +85,25 @@ void main_task(os_task_param_t task_init_data)
 #endif
     /* Write your code here ... */
 
+	  if( OSA_SemaWait( &lowPowerTimerSema, 22 ) == kStatus_OSA_Success )
+	  {
+		  GPIO_DRV_TogglePinOutput(Probe_Scheduler_Tick);
 
-    if( OSA_SemaWait( &lowPowerTimerSema, 22 ) == kStatus_OSA_Success ) {
-    	GPIO_DRV_TogglePinOutput(Probe_Scheduler_Tick);
+		  for( scheduler_frequency_e loop = SCHEDULER_50_HZ; loop<SCHEDULER_FREQ_LENGTH; loop++ )
+		  {
+			  scheduler_count_a[loop]++;
 
-    	for( scheduler_frequency_e loop = SCHEDULER_50_HZ; loop<SCHEDULER_FREQ_LENGTH; loop++ ) {
-    		scheduler_count_a[loop]++;
+			  if( scheduler_count_a[loop] >= scheduler_task_pTimer_division(loop) )
+			  {
+				  scheduler_count_a[loop] = 0;
 
-    		if( scheduler_count_a[loop] >= scheduler_task_pTimer_division(loop) ) {
-    			scheduler_count_a[loop] = 0;
-
-    			if( OSA_SemaPost( scheduler_task_pSemaphore(loop) ) != kStatus_OSA_Success ) {
-						Sched_Error_Catch(3);				// Error Management.
-					}
-    		}
-    	}
-/*      schedulerCount++;
+				  if( OSA_SemaPost( scheduler_task_pSemaphore(loop) ) != kStatus_OSA_Success )
+				  {
+					  Sched_Error_Catch(3);				// Error Management.
+				  }
+			  }
+		  }
+		  /*      schedulerCount++;
 
       if( OSA_SemaPost( &task50HzSema ) != kStatus_OSA_Success ) {
       	Sched_Error_Catch(3);				// Error Management.
@@ -127,12 +132,13 @@ void main_task(os_task_param_t task_init_data)
 			  	Sched_Error_Catch(3);				// Error Management.
 				}
 			}
-*/
-    }
-    else {
+		   */
+	  }
+	  else
+	  {
 
-    	// catch error.
-    }
+		  // catch error.
+	  }
 
 #ifdef PEX_USE_RTOS
   }
