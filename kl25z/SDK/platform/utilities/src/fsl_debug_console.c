@@ -564,7 +564,22 @@ int debug_getchar(void)
     {
         return -1;
     }
-    s_debugConsole.ops.rx_union.Receive(s_debugConsole.base, &c, 1);
+/*
+ * MODIFIED
+ * This code check if there is data available and then return no data to deal or
+ * success in get data.
+ */
+ /*
+  * Original code:
+  */
+//    s_debugConsole.ops.rx_union.Receive(s_debugConsole.base, &c, 1);
+/*
+ * Solved code:
+ */
+    if( s_debugConsole.ops.rx_union.UART0_Receive(s_debugConsole.base, &c, 1) == kStatus_LPSCI_NoDataToDeal )
+    {
+    	c = -1;
+    }
 
     return c;
 }

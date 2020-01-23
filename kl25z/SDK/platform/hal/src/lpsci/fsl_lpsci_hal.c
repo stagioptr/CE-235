@@ -297,8 +297,28 @@ lpsci_status_t LPSCI_HAL_ReceiveDataPolling(UART0_Type * base,
 
     while (rxSize--)
     {
-        while (!UART0_BRD_S1_RDRF(base))
+/*
+ * MODIFIED
+ * This code solve the polling mechanism in order to not wait for data
+ * from UART. Instead, return "No data to deal" status.
+ */
+ /*
+  * Original code:
+  */
+/*        while (!UART0_BRD_S1_RDRF(base))
         {}
+*/
+ /*
+  * Solved code:
+  */
+    		if (!UART0_BRD_S1_RDRF(base))
+    		{
+    			retVal = kStatus_LPSCI_NoDataToDeal;
+    			break;
+    		}
+  /*
+   * EndOfModified
+   */
 
         LPSCI_HAL_Getchar(base, rxBuff++);
 

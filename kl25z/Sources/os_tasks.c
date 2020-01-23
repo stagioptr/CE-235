@@ -63,16 +63,10 @@ void Task1Hz_task(os_task_param_t task_init_data)
 #endif
     /* Write your code here ... */
 
-  	if( OSA_SemaWait( scheduler_task_pSemaphore(4), 1002 ) == kStatus_OSA_Success )
+  	if( OSA_SemaWait( scheduler_task_pSemaphore(4), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
   	{
-  		OSA_TimeDelay(10);                 /* Example code (for task release) */
-  		GPIO_DRV_TogglePinOutput(Probe_Scheduler_Error);
-  	}
-  	else
-  	{
-    	Sched_Error_Catch(2);				// Error Management.
-  	}
 
+  	}
 
 
 #ifdef PEX_USE_RTOS
@@ -98,15 +92,10 @@ void Task2Hz_task(os_task_param_t task_init_data)
 #endif
     /* Write your code here ... */
 
-	  if( OSA_SemaWait( scheduler_task_pSemaphore(3), 502 ) == kStatus_OSA_Success )
+	  if( OSA_SemaWait( scheduler_task_pSemaphore(3), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
 	  {
 		  OSA_TimeDelay(10);                 /* Example code (for task release) */
 	  }
-	  else
-	  {
-		  Sched_Error_Catch(2);				// Error Management.
-	  }
-
 
 
 #ifdef PEX_USE_RTOS
@@ -132,15 +121,21 @@ void Task10Hz_task(os_task_param_t task_init_data)
 #endif
     /* Write your code here ... */
 
-	  if( OSA_SemaWait( scheduler_task_pSemaphore(2), 102 ) == kStatus_OSA_Success )
+	  if( OSA_SemaWait( scheduler_task_pSemaphore(2), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
 	  {
-		  OSA_TimeDelay(10);                 /* Example code (for task release) */
-	  }
-	  else
-	  {
-		  Sched_Error_Catch(2);				// Error Management.
-	  }
+	  	uint8_t input;
 
+			input = debug_getchar();
+			if( input == '1' )
+			{
+				ledrgb_setBlueLed();
+			}
+			else
+			if( input == '2' )
+			{
+				ledrgb_clearBlueLed();
+			}
+	  }
 
 #ifdef PEX_USE_RTOS
   }
@@ -165,14 +160,10 @@ void Task25Hz_task(os_task_param_t task_init_data)
 #endif
     /* Write your code here ... */
 
-	  if( OSA_SemaWait( scheduler_task_pSemaphore(1), 42 ) == kStatus_OSA_Success )
+	  if( OSA_SemaWait( scheduler_task_pSemaphore(1), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
 	  {
 		  OSA_TimeDelay(10);                 /* Example code (for task release) */
 	  }
-	  else {
-		  Sched_Error_Catch(2);				// Error Management.
-	  }
-
 
 
 #ifdef PEX_USE_RTOS
@@ -199,15 +190,10 @@ void Task50Hz_task(os_task_param_t task_init_data)
     /* Write your code here ... */
 
 
-	  if( OSA_SemaWait( scheduler_task_pSemaphore(0), 22 ) == kStatus_OSA_Success )
+	  if( OSA_SemaWait( scheduler_task_pSemaphore(0), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
 	  {
 		  OSA_TimeDelay(10);                 /* Example code (for task release) */
 	  }
-	  else
-	  {
-		  Sched_Error_Catch(2);				// Error Management.
-	  }
-
 
 
 #ifdef PEX_USE_RTOS
@@ -227,7 +213,9 @@ void Task50Hz_task(os_task_param_t task_init_data)
 */
 void Sched_Error_Catch( uint32_t err_code )
 {
+	debug_printf( "%d", err_code );
 	ledrgb_setRedLed();
+	GPIO_DRV_TogglePinOutput(Probe_Scheduler_Error);
 }
 
 #ifdef __cplusplus

@@ -103,40 +103,10 @@ void main_task(os_task_param_t task_init_data)
 				  }
 			  }
 		  }
-		  /*      schedulerCount++;
-
-      if( OSA_SemaPost( &task50HzSema ) != kStatus_OSA_Success ) {
-      	Sched_Error_Catch(3);				// Error Management.
-      }
-
-      if( schedulerCount % 2 ) {
-      	if( OSA_SemaPost( &task25HzSema ) != kStatus_OSA_Success ) {
-      		Sched_Error_Catch(3);				// Error Management.
-				}
-      }
-
-      if( schedulerCount % 5 ) {
-				if( OSA_SemaPost( &task10HzSema ) != kStatus_OSA_Success ) {
-			  	Sched_Error_Catch(3);				// Error Management.
-				}
-			}
-
-      if( schedulerCount % 25 ) {
-				if( OSA_SemaPost( &task2HzSema ) != kStatus_OSA_Success ) {
-			  	Sched_Error_Catch(3);				// Error Management.
-				}
-			}
-
-      if( schedulerCount % 50 ) {
-				if( OSA_SemaPost( &task1HzSema ) != kStatus_OSA_Success ) {
-			  	Sched_Error_Catch(3);				// Error Management.
-				}
-			}
-		   */
 	  }
 	  else
 	  {
-
+	  	Sched_Error_Catch(6);				// Error Management.
 		  // catch error.
 	  }
 
