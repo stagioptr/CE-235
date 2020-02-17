@@ -42,6 +42,7 @@
 #include "Task10Hz.h"
 #include "Task2Hz.h"
 #include "Task1Hz.h"
+#include "TerminalTask.h"
 #include "tpmTmr1.h"
 #include "DbgCs1.h"
 
@@ -68,6 +69,41 @@ void TPM0_IRQHandler(void);
    * possible new request (e.g. in case that another component uses this
    * interrupt vector). */
   #warning This IRQ handler is not used by tpmTmr1 component.\
+           It is recommended to remove this because Processor Expert cannot\
+           modify it according to possible new request.
+#endif
+
+#ifdef tpmTmr2_IDX
+#else
+  /* This IRQ handler is not used by tpmTmr2 component. The purpose may be
+   * that the component has been removed or disabled. It is recommended to 
+   * remove this handler because Processor Expert cannot modify it according to 
+   * possible new request (e.g. in case that another component uses this
+   * interrupt vector). */
+  #warning This IRQ handler is not used by tpmTmr2 component.\
+           It is recommended to remove this because Processor Expert cannot\
+           modify it according to possible new request.
+#endif
+
+#ifdef tpmTmr2_IDX
+/*
+** ===================================================================
+**     Interrupt handler : TPM1_IRQHandler
+**
+**     Description :
+**         User interrupt service routine. 
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void TPM1_IRQHandler(void);
+#else
+  /* This IRQ handler is not used by tpmTmr2 component. The purpose may be
+   * that the component has been removed or disabled. It is recommended to 
+   * remove this handler because Processor Expert cannot modify it according to 
+   * possible new request (e.g. in case that another component uses this
+   * interrupt vector). */
+  #warning This IRQ handler is not used by tpmTmr2 component.\
            It is recommended to remove this because Processor Expert cannot\
            modify it according to possible new request.
 #endif

@@ -42,6 +42,7 @@
 #include "Task10Hz.h"
 #include "Task2Hz.h"
 #include "Task1Hz.h"
+#include "TerminalTask.h"
 #include "tpmTmr1.h"
 #include "DbgCs1.h"
 

@@ -10,7 +10,7 @@
 /*##                                                                         */
 /*##     Compiler  : GNU C Compiler                                          */
 /*##                                                                         */
-/*##     Date/Time : 2019-12-11, 15:53, # CodeGen: 1                         */
+/*##     Date/Time : 2020-02-06, 10:55, # CodeGen: 16                        */
 /*##                                                                         */
 /*##     Abstract  :                                                         */
 /*##                                                                         */
@@ -32,9 +32,8 @@ STACK_SIZE = DEFINED(__stack_size__) ? __stack_size__ : 0x0400;
 MEMORY {
   m_interrupts          (RX)  : ORIGIN = 0x00000000, LENGTH = 0x00000200
   m_flash_config        (RX)  : ORIGIN = 0x00000400, LENGTH = 0x00000010
-  m_interrupts_ram      (RW)  : ORIGIN = 0x1FFFF000, LENGTH = 0x00000200
   m_text                (RX)  : ORIGIN = 0x00000410, LENGTH = 0x0001FBF0
-  m_data                (RW)  : ORIGIN = 0x1FFFF200, LENGTH = 0x00003E00
+  m_data                (RW)  : ORIGIN = 0x1FFFF000, LENGTH = 0x00004000
 }
 
 /* Define output sections */
@@ -49,7 +48,7 @@ SECTIONS
     . = ALIGN(4);
   } > m_interrupts
 
-  __VECTOR_RAM = ORIGIN(m_interrupts_ram);
+  __VECTOR_RAM = __VECTOR_TABLE;
 
   .flash_config :
   {
@@ -172,17 +171,8 @@ SECTIONS
   /* Symbol is used by startup for data initialization */
   __DATA_END = __DATA_ROM + (__data_end__ - __data_start__);
 
-  .m_interrupts_ram :
-  {
-     . = ALIGN(4);
-     __m_interrupts_ram_RAMStart = .;
-     *(.m_interrupts_ram)    /* This is an User defined section */
-    . += 0x0200; 
-     __m_interrupts_ram_RAMEnd = .;
-     . = ALIGN(4);
-  } > m_interrupts_ram
-  __m_interrupts_ram_ROMSize = __m_interrupts_ram_RAMEnd - __m_interrupts_ram_RAMStart;          
-  __RAM_VECTOR_TABLE_SIZE_BYTES = __m_interrupts_ram_RAMEnd - __m_interrupts_ram_RAMStart;
+  __RAM_VECTOR_TABLE_SIZE_BYTES        = 0x00000000;
+  
   
   text_end = ORIGIN(m_text) + LENGTH(m_text);
   data_init_end = __DATA_ROM + SIZEOF(.data);

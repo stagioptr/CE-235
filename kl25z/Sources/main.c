@@ -43,13 +43,13 @@
 #include "Task10Hz.h"
 #include "Task2Hz.h"
 #include "Task1Hz.h"
+#include "TerminalTask.h"
 #include "tpmTmr1.h"
 #include "DbgCs1.h"
 #if CPU_INIT_CONFIG
   #include "Init_Config.h"
 #endif
 /* User includes (#include below this line is not maintained by Processor Expert) */
-#include "fsl_os_abstraction_ex.h"
 #include "ledrgb_hal.h"
 #include "scheduler.h"
 
@@ -61,23 +61,62 @@ semaphore_t task25HzSema = NULL;
 semaphore_t task10HzSema = NULL;
 semaphore_t task2HzSema = NULL;
 semaphore_t task1HzSema = NULL;
+semaphore_t terminalSema = NULL;
 
-task_setup_t task_semaphores[] =
+msg_queue_handler_t task50HzQueueHandler = NULL;
+msg_queue_handler_t task25HzQueueHandler = NULL;
+msg_queue_handler_t task10HzQueueHandler = NULL;
+msg_queue_handler_t task2HzQueueHandler = NULL;
+msg_queue_handler_t task1HzQueueHandler = NULL;
+msg_queue_handler_t terminalQueueHandler = NULL;
+
+msg_queue_t task50HzQueue;
+msg_queue_t task25HzQueue;
+msg_queue_t task10HzQueue;
+msg_queue_t task2HzQueue;
+msg_queue_t task1HzQueue;
+msg_queue_t terminalQueue;
+
+msg_queue_handler_t errorQueueHandler = NULL;
+msg_queue_t errorQueue[10];
+
+task_setup_t task_setup[] =
 {
-	{	.semaphore = &task50HzSema,
+	{
+		.semaphore = &task50HzSema,
+		.msg_queue_handler = &task50HzQueueHandler,
+		.msg_queue = &task50HzQueue,
 		.timer_division = 1
 	},
-	{	.semaphore = &task25HzSema,
+	{
+		.semaphore = &task25HzSema,
+		.msg_queue_handler = &task25HzQueueHandler,
+		.msg_queue = &task25HzQueue,
 		.timer_division = 2
 	},
-	{	.semaphore = &task10HzSema,
+	{
+		.semaphore = &task10HzSema,
+		.msg_queue_handler = &task10HzQueueHandler,
+		.msg_queue = &task10HzQueue,
 		.timer_division = 5
 	},
-	{	.semaphore = &task2HzSema,
+	{
+		.semaphore = &task2HzSema,
+		.msg_queue_handler = &task2HzQueueHandler,
+		.msg_queue = &task2HzQueue,
 		.timer_division = 25
 	},
-	{	.semaphore = &task1HzSema,
+	{
+		.semaphore = &task1HzSema,
+		.msg_queue_handler = &task1HzQueueHandler,
+		.msg_queue = &task1HzQueue,
 		.timer_division = 50
+	},
+	{
+		.semaphore = &terminalSema,
+		.msg_queue_handler = &terminalQueueHandler,
+		.msg_queue = &terminalQueue,
+		.timer_division = 5
 	},
 };
 
@@ -93,7 +132,9 @@ int main(void)
 
   /* Write your code here */
   /* Initialize  */
-  if( scheduler_setup( task_semaphores, sizeof(task_semaphores)/sizeof(task_setup_t) ) != kStatus_scheduler_Initialized )
+  errorQueueHandler = OSA_MsgQCreate( errorQueue, 10, 1 );
+
+  if( scheduler_setup( task_setup, sizeof(task_setup)/sizeof(task_setup_t) ) != kStatus_scheduler_Initialized )
   	Sched_Error_Catch(1);				// Error Management.
 
   ledrgb_init();
@@ -110,6 +151,39 @@ int main(void)
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
 /* END main */
+
+void NMI_Handler (void)
+{
+	Sched_Error_Catch(13);				// Error Management.
+	while(1);
+}
+
+void HardFault_Handler (void)
+{
+	Sched_Error_Catch(14);				// Error Management.
+	while(1);
+}
+
+/*
+** ===================================================================
+**     Callback    : Sched_Error_Catch
+**     Description : Error.
+**     Parameters  :
+**     Returns : Nothing
+** ===================================================================
+*/
+void Sched_Error_Catch( uint32_t err_code )
+{
+	OSA_MsgQPut( errorQueueHandler, &err_code );
+	GPIO_DRV_TogglePinOutput(Probe_Scheduler_Error);
+	ledrgb_setRedLed();
+}
+
+#ifdef __cplusplus
+}  /* extern "C" */
+#endif
+
+
 /*!
 ** @}
 */

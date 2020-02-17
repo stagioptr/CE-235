@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Vítor E. S. da Cruz
+ * Copyright (c) 2020, Vítor E. S. da Cruz
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,40 +27,75 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#if defined (FSL_RTOS_FREE_RTOS)
 
 #include <string.h>
 #include <assert.h>
 #include "fsl_os_abstraction.h"
-#include "fsl_os_abstraction_ex.h"
-#include "fsl_interrupt_manager.h"
+#include "fsl_tpm_driver.h"
+#include "statistics.h"
 
-/*! @brief Converts milliseconds to ticks*/
-#define MSEC_TO_TICK(msec)  (((uint32_t)(msec)+500uL/(uint32_t)configTICK_RATE_HZ) \
-                             *(uint32_t)configTICK_RATE_HZ/1000uL)
-#define TICKS_TO_MSEC(tick) ((tick)*1000uL/(uint32_t)configTICK_RATE_HZ)
+int32_t ticksCount = 0;
 
-/*FUNCTION**********************************************************************
- *
- * Function Name : OSA_BinarySemaCreate
- * Description   : This function is used to create a binary semaphore. Return
- * kStatus_OSA_Success if create successfully, otherwise return kStatus_OSA_Error.
- *
- *END**************************************************************************/
-osa_status_t OSA_BinarySemaCreate(semaphore_t *pSem)
+statistiucs_t scheduler_statistcs_getCount ( void )
 {
-    assert(pSem);
+	statistiucs_t temp;
 
-    *pSem = xSemaphoreCreateBinary();
-    if (*pSem==NULL)
-    {
-        return kStatus_OSA_Error; /* creating semaphore failed */
-    }
-    return kStatus_OSA_Success;
+	temp.count = TPM_DRV_CounterRead(TPM0_IDX);
+	temp.ticks = ticksCount;
+
+	return temp;
 }
 
-#endif /* FSL_RTOS_FREE_RTOS */
+void scheduler_statistcs_addTime ( statistiucs_t* totals, statistiucs_t* countBeforeOperation )
+{
+	uint32_t temp = TPM_DRV_CounterRead(TPM0_IDX);
 
-/*******************************************************************************
- * EOF
- ******************************************************************************/
+	if( temp > countBeforeOperation->count )
+	{
+		totals->count += temp - countBeforeOperation->count;
+	}
+	else
+	{
+		totals->count += ( 60000 - ( countBeforeOperation->count - temp ) );
+		totals->ticks--;
+	}
+	while( totals->count >= 60000 )
+	{
+		totals->count -= 60000;
+		totals->ticks += 1;
+	}
+	totals->ticks += abs( ticksCount - countBeforeOperation->ticks );
+}
+
+statistiucs_t scheduler_statistcs_differenceOfTime ( statistiucs_t* start, statistiucs_t* stop )
+{
+	statistiucs_t result;
+
+	result.ticks = abs( stop->ticks - start->ticks );
+	if( stop->count > start->count )
+	{
+		result.count = stop->count - start->count;
+	}
+	else
+	{
+		result.count = ( 60000 - ( start->count - stop->count ) );
+		result.ticks--;
+	}
+
+	return result;
+}
+
+uint32_t scheduler_statistcs_convertToMicroseconds ( statistiucs_t* value )
+{
+	uint32_t temp;
+
+	temp = value->ticks * 20;
+	temp += ( ( value->count * 20 ) / 60000 );
+
+	return temp;
+}
+
+void scheduler_statistcs_incrementCount ( void )
+{
+	ticksCount++;
+}

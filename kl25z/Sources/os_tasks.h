@@ -46,6 +46,7 @@
 #include "Task10Hz.h"
 #include "Task2Hz.h"
 #include "Task1Hz.h"
+#include "TerminalTask.h"
 #include "tpmTmr1.h"
 #include "DbgCs1.h"
 
@@ -108,6 +109,17 @@ void Task25Hz_task(os_task_param_t task_init_data);
 */
 void Task50Hz_task(os_task_param_t task_init_data);
 
+
+/*
+** ===================================================================
+**     Callback    : Terminal_task
+**     Description : Task function entry.
+**     Parameters  :
+**       task_init_data - OS task parameter
+**     Returns : Nothing
+** ===================================================================
+*/
+void Terminal_task(os_task_param_t task_init_data);
 
 /* END os_tasks */
 

@@ -47,12 +47,13 @@ typedef enum
 	SCHEDULER_10_HZ,
 	SCHEDULER_2_HZ,
 	SCHEDULER_1_HZ,
+	SCHEDULER_TERMINAL,
 	SCHEDULER_FREQ_LENGTH
 }scheduler_frequency_e;
 
 uint32_t scheduler_count_a[SCHEDULER_FREQ_LENGTH] =
 {
-		0, 0, 0, 0, 0
+		0, 0, 0, 0, 0, 0
 };
 
 /* Initialization of Processor Expert components function prototype */
@@ -79,6 +80,7 @@ void main_task(os_task_param_t task_init_data)
   PEX_components_init();
 #endif
   /* End of Processor Expert components initialization.  */
+  uint32_t rtos_token = 0xAAAAAAAA;
 
 #ifdef PEX_USE_RTOS
   while (1) {
@@ -101,6 +103,10 @@ void main_task(os_task_param_t task_init_data)
 				  {
 					  Sched_Error_Catch(3);				// Error Management.
 				  }
+				  if( OSA_MsgQPut( scheduler_task_pQueueHandler(loop), &rtos_token ) != kStatus_OSA_Success )
+					{
+						Sched_Error_Catch(7);				// Error Management.
+					}
 			  }
 		  }
 	  }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Vítor E. S. da Cruz
+ * Copyright (c) 2020, Vítor E. S. da Cruz
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,35 +27,5 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#if defined (FSL_RTOS_MQX)
 
-#include <string.h>
-#include <assert.h>
-#include "fsl_os_abstraction.h"
-#include "fsl_os_abstraction_ex.h"
-#include "fsl_interrupt_manager.h"
-
-/*! @brief Converts milliseconds to ticks*/
-#define MSEC_TO_TICK(msec)  (((uint32_t)(msec)+500uL/(uint32_t)configTICK_RATE_HZ) \
-                             *(uint32_t)configTICK_RATE_HZ/1000uL)
-#define TICKS_TO_MSEC(tick) ((tick)*1000uL/(uint32_t)configTICK_RATE_HZ)
-
-/*FUNCTION**********************************************************************
- *
- * Function Name : OSA_BinarySemaCreate
- * Description   : This function is used to create a binary semaphore. Return
- * kStatus_OSA_Success if create successfully, otherwise return kStatus_OSA_Error.
- *
- *END**************************************************************************/
-osa_status_t OSA_BinarySemaCreate(semaphore_t *pSem)
-{
-#warning "OSA_BinarySemaCreate: This routine was not developed in this version, so return OSA error."
-
-  return kStatus_OSA_Error; /* creating semaphore failed */
-}
-
-#endif /* FSL_RTOS_MQX */
-
-/*******************************************************************************
- * EOF
- ******************************************************************************/
+void shell_stateMachine(void);

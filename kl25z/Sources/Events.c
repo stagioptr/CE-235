@@ -5,13 +5,14 @@
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2019-12-11, 15:13, # CodeGen: 0
+**     Date/Time   : 2020-02-13, 13:31, # CodeGen: 30
 **     Abstract    :
 **         This is user's event module.
 **         Put your event handler code here.
 **     Settings    :
 **     Contents    :
-**         No public methods
+**         TPM1_IRQHandler - void TPM1_IRQHandler(void);
+**         TPM0_IRQHandler - void TPM0_IRQHandler(void);
 **
 ** ###################################################################*/
 /*!
@@ -35,10 +36,38 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+#include "scheduler.h"
+#include "statistics.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
-#include "scheduler.h"
+
+#ifdef tpmTmr2_IDX
+/*
+** ===================================================================
+**     Interrupt handler : TPM1_IRQHandler
+**
+**     Description :
+**         User interrupt service routine.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void TPM1_IRQHandler(void)
+{
+  TPM_DRV_IRQHandler(tpmTmr2_IDX);
+  /* Write your code here ... */
+
+}
+#else
+  /* This IRQ handler is not used by tpmTmr2 component. The purpose may be
+   * that the component has been removed or disabled. It is recommended to
+   * remove this handler because Processor Expert cannot modify it according to
+   * possible new request (e.g. in case that another component uses this
+   * interrupt vector). */
+  #warning This IRQ handler is not used by tpmTmr2 component.\
+           It is recommended to remove this because Processor Expert cannot\
+           modify it according to possible new request.
+#endif
 
 #ifdef tpmTmr1_IDX
 /*
@@ -55,6 +84,7 @@ void TPM0_IRQHandler(void)
 {
   TPM_DRV_IRQHandler(tpmTmr1_IDX);
   /* Write your code here ... */
+  scheduler_statistcs_incrementCount();
 	if( OSA_SemaPost( &lowPowerTimerSema ) != kStatus_OSA_Success )
 		Sched_Error_Catch(4);				// Error Management.
 }

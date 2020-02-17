@@ -3,7 +3,7 @@
   <Header>
     <Name>kl25z</Name>
     <SavedBy>vcruz</SavedBy>
-    <ModificationStamp>28</ModificationStamp>
+    <ModificationStamp>51</ModificationStamp>
     <Date>2019-12-11</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.2.RT7_b1550-0615</PEversion>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>34</ProjectCompNumb>
+    <ProjectCompNumb>42</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -1408,8 +1408,8 @@
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <Index>0</Index>
-          <Value>true</Value>
+          <Index>1</Index>
+          <Value>false</Value>
         </ItemState>
         <ItemState>
           <ItemSymbol>DefaultMemInterrupts</ItemSymbol>
@@ -1438,7 +1438,7 @@
         <ItemState>
           <ItemSymbol>C_RomRamList</ItemSymbol>
           <ReadOnly>false</ReadOnly>
-          <ListItemCount>5</ListItemCount>
+          <ListItemCount>4</ListItemCount>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
           <Expanded>true</Expanded>
         </ItemState>
@@ -1511,13 +1511,13 @@
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <Value>true</Value>
+          <Value>false</Value>
           <Expanded>true</Expanded>
         </ItemState>
         <ItemState>
           <ItemSymbol>C_RomRamName1</ItemSymbol>
           <ReadOnly>false</ReadOnly>
-          <Value>m_interrupts_ram</Value>
+          <Value>m_text_00000200</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
         </ItemState>
         <ItemState>
@@ -1525,20 +1525,20 @@
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <Index>2</Index>
-          <EnumSymbVal>RW</EnumSymbVal>
+          <Index>1</Index>
+          <EnumSymbVal>RX</EnumSymbVal>
         </ItemState>
         <ItemState>
           <ItemSymbol>C_RomRamPhysicalType1</ItemSymbol>
           <ReadOnly>false</ReadOnly>
-          <Value>RAM</Value>
+          <Value>FLASH</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
         </ItemState>
         <ItemState>
           <ItemSymbol>C_RomRamAddr1</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>536866816</Value>
+          <Value>512</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
           <Base>HEX</Base>
           <Area />
@@ -1569,13 +1569,13 @@
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <Value>false</Value>
+          <Value>true</Value>
           <Expanded>true</Expanded>
         </ItemState>
         <ItemState>
           <ItemSymbol>C_RomRamName2</ItemSymbol>
           <ReadOnly>false</ReadOnly>
-          <Value>m_text_00000200</Value>
+          <Value>m_text</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
         </ItemState>
         <ItemState>
@@ -1596,7 +1596,7 @@
           <ItemSymbol>C_RomRamAddr2</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>512</Value>
+          <Value>1040</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
           <Base>HEX</Base>
           <Area />
@@ -1605,7 +1605,7 @@
           <ItemSymbol>C_RomRamSize2</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>512</Value>
+          <Value>130032</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
           <Base>HEX</Base>
         </ItemState>
@@ -1633,7 +1633,7 @@
         <ItemState>
           <ItemSymbol>C_RomRamName3</ItemSymbol>
           <ReadOnly>false</ReadOnly>
-          <Value>m_text</Value>
+          <Value>m_data</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
         </ItemState>
         <ItemState>
@@ -1641,20 +1641,20 @@
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <Index>1</Index>
-          <EnumSymbVal>RX</EnumSymbVal>
+          <Index>2</Index>
+          <EnumSymbVal>RW</EnumSymbVal>
         </ItemState>
         <ItemState>
           <ItemSymbol>C_RomRamPhysicalType3</ItemSymbol>
           <ReadOnly>false</ReadOnly>
-          <Value>FLASH</Value>
+          <Value>RAM</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
         </ItemState>
         <ItemState>
           <ItemSymbol>C_RomRamAddr3</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>1040</Value>
+          <Value>536866816</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
           <Base>HEX</Base>
           <Area />
@@ -1663,70 +1663,12 @@
           <ItemSymbol>C_RomRamSize3</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>130032</Value>
+          <Value>16384</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
           <Base>HEX</Base>
         </ItemState>
         <ItemState>
           <ItemSymbol>C_RomRamGroupContent3</ItemSymbol>
-          <ReadOnly>false</ReadOnly>
-          <Value>(string list)</Value>
-          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <StrgList lines_count="0" />
-        </ItemState>
-        <ItemState>
-          <ItemSymbol>C_MemoryArea4</ItemSymbol>
-          <ReadOnly>false</ReadOnly>
-          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <Expanded>true</Expanded>
-        </ItemState>
-        <ItemState>
-          <ItemSymbol>C_RomRamArea4</ItemSymbol>
-          <ReadOnly>false</ReadOnly>
-          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <Value>true</Value>
-          <Expanded>false</Expanded>
-        </ItemState>
-        <ItemState>
-          <ItemSymbol>C_RomRamName4</ItemSymbol>
-          <ReadOnly>false</ReadOnly>
-          <Value>m_data</Value>
-          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-        </ItemState>
-        <ItemState>
-          <ItemSymbol>C_RomRamQualifier4</ItemSymbol>
-          <ReadOnly>false</ReadOnly>
-          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <Index>2</Index>
-          <EnumSymbVal>RW</EnumSymbVal>
-        </ItemState>
-        <ItemState>
-          <ItemSymbol>C_RomRamPhysicalType4</ItemSymbol>
-          <ReadOnly>false</ReadOnly>
-          <Value>RAM</Value>
-          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-        </ItemState>
-        <ItemState>
-          <ItemSymbol>C_RomRamAddr4</ItemSymbol>
-          <ReadOnly>false</ReadOnly>
-          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>536867328</Value>
-          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <Base>HEX</Base>
-          <Area />
-        </ItemState>
-        <ItemState>
-          <ItemSymbol>C_RomRamSize4</ItemSymbol>
-          <ReadOnly>false</ReadOnly>
-          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>15872</Value>
-          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-          <Base>HEX</Base>
-        </ItemState>
-        <ItemState>
-          <ItemSymbol>C_RomRamGroupContent4</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <Value>(string list)</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
@@ -1890,6 +1832,64 @@
           <ItemSymbol>GNUC_ARM_Directory</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_MemoryArea4</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Expanded>true</Expanded>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamArea4</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Value>true</Value>
+          <Expanded>false</Expanded>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamName4</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <Value>m_data</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamQualifier4</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Index>2</Index>
+          <EnumSymbVal>RW</EnumSymbVal>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamPhysicalType4</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <Value>RAM</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamAddr4</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <Value>536867328</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Base>HEX</Base>
+          <Area />
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamSize4</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <Value>15872</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Base>HEX</Base>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamGroupContent4</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <Value>(string list)</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <StrgList lines_count="0" />
         </ItemState>
       </CompilerProperties>
       <DestLanguage>Ansi-C</DestLanguage>
@@ -18739,7 +18739,6 @@
               <UserReadOnly>false</UserReadOnly>
               <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
               <Value>8192</Value>
-              <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
               <Base>DEC</Base>
             </ItemState>
             <ItemState>
@@ -18747,7 +18746,6 @@
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
               <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-              <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
               <Value>false</Value>
               <Expanded>false</Expanded>
             </ItemState>
@@ -18756,7 +18754,6 @@
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
               <Value>.m_data</Value>
-              <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
             </ItemState>
             <ItemState>
               <ItemSymbol>HookFunctionConfigurationGrp</ItemSymbol>
@@ -23293,7 +23290,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>5</Value>
+        <Value>2</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -23301,7 +23298,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>256</Value>
+        <Value>200</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -23526,7 +23523,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>4</Value>
+        <Value>2</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -23534,7 +23531,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>256</Value>
+        <Value>200</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -23759,7 +23756,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>3</Value>
+        <Value>2</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -23767,7 +23764,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>256</Value>
+        <Value>200</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -24000,7 +23997,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>256</Value>
+        <Value>200</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -24225,7 +24222,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>1</Value>
+        <Value>2</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -24233,7 +24230,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>256</Value>
+        <Value>200</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -24401,6 +24398,239 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <Value>Task5_TaskCode</Value>
+      </ItemState>
+    </Events>
+  </Bean>
+  <Bean>
+    <Repository>file:/${ProcessorExpert_loc}/Repositories/KSDK130_Repository</Repository>
+    <ComponentUUID>com.freescale.processorexpert.os_task</ComponentUUID>
+    <BeanType>OS_Task</BeanType>
+    <Name>TerminalTask</Name>
+    <CompNumb>35</CompNumb>
+    <CompEnabled>true</CompEnabled>
+    <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
+    <IconName>OS_LDD</IconName>
+    <UserFolderName />
+    <Comment lines_count="0" />
+    <Template />
+    <BeanVersion>1.3.0</BeanVersion>
+    <LightErrorsIgnored>false</LightErrorsIgnored>
+    <Properties>
+      <ItemState>
+        <ItemSymbol>DeviceName</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value>TerminalTask</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>CompVersion</ItemSymbol>
+        <Value>1.3.0</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>VersionSpecificItem</ItemSymbol>
+        <ListItemCount>1</ListItemCount>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>Settings</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Expanded>true</Expanded>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>TaskEntryFunction</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value>Terminal_task</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>IsPriorityInitialized</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>TaskPriority</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Value>3</Value>
+        <Base>DEC</Base>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>TaskStackSize</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Value>1024</Value>
+        <Base>DEC</Base>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>DynamicallyAllocateTaskResources</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>CreationParameterGrp</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Expanded>true</Expanded>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>UserParamExtDeclaration</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value />
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>TaskCreationParameter</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value>NULL</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>TaskAttributesGrp</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Expanded>true</Expanded>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>TaskFloatingPointTask</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>CallingComponents_InitFunction</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>HiddenItem</ItemSymbol>
+        <ListItemCount>1</ListItemCount>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>Initialization</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Expanded>true</Expanded>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>AutoInitialization</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Value>true</Value>
+        <Expanded>true</Expanded>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>LinkItem</ItemSymbol>
+        <ListItemCount>1</ListItemCount>
+        <ItemsTypeState>Beans\OS_Task\OS_Task_links.item</ItemsTypeState>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>LinkGrp</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Expanded>true</Expanded>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>LinkOSAGrp</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Value>false</Value>
+        <Expanded>true</Expanded>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>LinkOSA</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value>osa1</Value>
+      </ItemState>
+    </Properties>
+    <Methods>
+      <ItemState>
+        <ItemSymbol>SdkSpecificMethods</ItemSymbol>
+        <ListItemCount>1</ListItemCount>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>fsl_uartgroup</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>Init</ItemSymbol>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+        <Value>true</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>always</LastUserSel>
+        <UsrMethodName>Init</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>GetHandler</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>no</LastUserSel>
+        <UsrMethodName>GetHandler</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>Deinit</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>no</LastUserSel>
+        <UsrMethodName>Deinit</UsrMethodName>
+      </ItemState>
+    </Methods>
+    <Events>
+      <ItemState>
+        <ItemSymbol>SdkSpecificEvents</ItemSymbol>
+        <ListItemCount>1</ListItemCount>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>fsl_adceventgroup</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>EventModule</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value>os_tasks</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>TaskCode</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Value>true</Value>
+        <Expanded>true</Expanded>
+        <LastSelection>false</LastSelection>
+        <LastUserSel>yes</LastUserSel>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>TaskCodeName</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value>Task1_TaskCode</Value>
       </ItemState>
     </Events>
   </Bean>

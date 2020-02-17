@@ -44,10 +44,15 @@ typedef enum
 typedef struct
 {
 	semaphore_t semaphore;
+	msg_queue_handler_t msg_queue_handler;
+	msg_queue_t msg_queue;
 	uint32_t timer_division;
 }task_setup_t;
 
 scheduler_status_t scheduler_setup ( task_setup_t *task_setup, uint32_t length );
 semaphore_t scheduler_task_pSemaphore ( uint32_t index );
+msg_queue_handler_t scheduler_task_pQueueHandler ( uint32_t index );
 uint32_t scheduler_task_pTimer_division ( uint32_t index );
+
 void Sched_Error_Catch( uint32_t err_code );
+uint32_t Sched_get_current_time( void );

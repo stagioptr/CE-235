@@ -31,7 +31,6 @@
 #include <string.h>
 #include <assert.h>
 #include "fsl_os_abstraction.h"
-#include "fsl_os_abstraction_ex.h"
 #include "fsl_interrupt_manager.h"
 #include "scheduler.h"
 
@@ -50,13 +49,14 @@ scheduler_status_t scheduler_setup ( task_setup_t *task_setup, uint32_t length )
 	task_setup_pointer = task_setup;
 	max_semaphores = length;
 
-  if( OSA_BinarySemaCreate( &lowPowerTimerSema ) != kStatus_OSA_Success )
+  if( OSA_SemaCreate( &lowPowerTimerSema, 0 ) != kStatus_OSA_Success )
   	Sched_Error_Catch(1);				// Error Management.
 
   for( uint32_t index = 0; index<length; index++ )
   {
-  	if( OSA_BinarySemaCreate( task_setup[index].semaphore ) != kStatus_OSA_Success )
+  	if( OSA_SemaCreate( task_setup[index].semaphore, 0 ) != kStatus_OSA_Success )
   		Sched_Error_Catch(1);				// Error Management.
+  	task_setup[index].msg_queue_handler = OSA_MsgQCreate( task_setup[index].msg_queue, 1, 1 );
   }
 	return kStatus_scheduler_Initialized;
 }
@@ -64,6 +64,11 @@ scheduler_status_t scheduler_setup ( task_setup_t *task_setup, uint32_t length )
 semaphore_t scheduler_task_pSemaphore ( uint32_t index )
 {
 	return task_setup_pointer[index].semaphore;
+}
+
+msg_queue_handler_t scheduler_task_pQueueHandler ( uint32_t index )
+{
+	return task_setup_pointer[index].msg_queue_handler;
 }
 
 uint32_t scheduler_task_pTimer_division ( uint32_t index )
@@ -78,4 +83,13 @@ __attribute((weak)) void Sched_Error_Catch( uint32_t err_code )
 	 */
 
 	return;
+}
+
+__attribute((weak)) uint32_t Sched_get_current_time( void )
+{
+	/*
+	 * Do nothing. The user must add his own implementation of this routine.
+	 */
+
+	return 0;
 }

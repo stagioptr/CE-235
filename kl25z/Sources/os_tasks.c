@@ -44,6 +44,18 @@ extern "C" {
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "ledrgb_hal.h"
 #include "scheduler.h"
+#include "statistics.h"
+#include "terminal.h"
+
+extern msg_queue_handler_t errorQueueHandler;
+extern msg_queue_t errorQueue[10];
+
+statistiucs_t
+		statusticsTask1Hz = { 0, 0 },
+		statusticsTask2Hz = { 0, 0 },
+		statusticsTask10Hz = { 0, 0 },
+		statusticsTask25Hz = { 0, 0 },
+		statusticsTask50Hz = { 0, 0 };
 
 /*
 ** ===================================================================
@@ -57,6 +69,8 @@ extern "C" {
 void Task1Hz_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
+	uint32_t rtos_token;
+	statistiucs_t temp = { 0, 0 };
 
 #ifdef PEX_USE_RTOS
   while (1) {
@@ -65,7 +79,16 @@ void Task1Hz_task(os_task_param_t task_init_data)
 
   	if( OSA_SemaWait( scheduler_task_pSemaphore(4), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
   	{
+  		temp = scheduler_statistcs_getCount();
 
+  		if( OSA_MsgQGet( scheduler_task_pQueueHandler(4), &rtos_token, 0 ) != kStatus_OSA_Success )
+			{
+				Sched_Error_Catch(8);				// Error Management.
+			}
+
+  		OSA_TimeDelay(1);
+
+  		scheduler_statistcs_addTime( &statusticsTask1Hz, &temp );
   	}
 
 
@@ -86,6 +109,8 @@ void Task1Hz_task(os_task_param_t task_init_data)
 void Task2Hz_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
+	uint32_t rtos_token;
+	statistiucs_t temp = { 0, 0 };
 
 #ifdef PEX_USE_RTOS
   while (1) {
@@ -94,10 +119,17 @@ void Task2Hz_task(os_task_param_t task_init_data)
 
 	  if( OSA_SemaWait( scheduler_task_pSemaphore(3), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
 	  {
-		  OSA_TimeDelay(10);                 /* Example code (for task release) */
+		  temp = scheduler_statistcs_getCount();
+
+	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(3), &rtos_token, 0 ) != kStatus_OSA_Success )
+			{
+				Sched_Error_Catch(9);				// Error Management.
+			}
+
+	  	OSA_TimeDelay(3);
+
+	  	scheduler_statistcs_addTime( &statusticsTask2Hz, &temp );
 	  }
-
-
 #ifdef PEX_USE_RTOS
   }
 #endif
@@ -115,6 +147,8 @@ void Task2Hz_task(os_task_param_t task_init_data)
 void Task10Hz_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
+	uint32_t rtos_token;
+	statistiucs_t temp = { 0, 0 };
 
 #ifdef PEX_USE_RTOS
   while (1) {
@@ -123,18 +157,16 @@ void Task10Hz_task(os_task_param_t task_init_data)
 
 	  if( OSA_SemaWait( scheduler_task_pSemaphore(2), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
 	  {
-	  	uint8_t input;
+	  	temp = scheduler_statistcs_getCount();
 
-			input = debug_getchar();
-			if( input == '1' )
+	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(2), &rtos_token, 0 ) != kStatus_OSA_Success )
 			{
-				ledrgb_setBlueLed();
+				Sched_Error_Catch(10);				// Error Management.
 			}
-			else
-			if( input == '2' )
-			{
-				ledrgb_clearBlueLed();
-			}
+
+			OSA_TimeDelay(10);
+
+			scheduler_statistcs_addTime( &statusticsTask10Hz, &temp );
 	  }
 
 #ifdef PEX_USE_RTOS
@@ -154,6 +186,8 @@ void Task10Hz_task(os_task_param_t task_init_data)
 void Task25Hz_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
+	uint32_t rtos_token;
+	statistiucs_t temp = { 0, 0 };
 
 #ifdef PEX_USE_RTOS
   while (1) {
@@ -162,7 +196,16 @@ void Task25Hz_task(os_task_param_t task_init_data)
 
 	  if( OSA_SemaWait( scheduler_task_pSemaphore(1), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
 	  {
-		  OSA_TimeDelay(10);                 /* Example code (for task release) */
+	  	temp = scheduler_statistcs_getCount();
+
+	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(1), &rtos_token, 0 ) != kStatus_OSA_Success )
+			{
+				Sched_Error_Catch(11);				// Error Management.
+			}
+
+			OSA_TimeDelay(30);
+
+			scheduler_statistcs_addTime( &statusticsTask25Hz, &temp );
 	  }
 
 
@@ -183,6 +226,8 @@ void Task25Hz_task(os_task_param_t task_init_data)
 void Task50Hz_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
+	uint32_t rtos_token;
+	statistiucs_t temp = { 0, 0 };
 
 #ifdef PEX_USE_RTOS
   while (1) {
@@ -192,7 +237,16 @@ void Task50Hz_task(os_task_param_t task_init_data)
 
 	  if( OSA_SemaWait( scheduler_task_pSemaphore(0), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
 	  {
-		  OSA_TimeDelay(10);                 /* Example code (for task release) */
+	  	temp = scheduler_statistcs_getCount();
+
+	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(0), &rtos_token, 0 ) != kStatus_OSA_Success )
+			{
+				Sched_Error_Catch(12);				// Error Management.
+			}
+
+			OSA_TimeDelay(7);
+
+			scheduler_statistcs_addTime( &statusticsTask50Hz, &temp );
 	  }
 
 
@@ -201,27 +255,51 @@ void Task50Hz_task(os_task_param_t task_init_data)
 #endif
 }
 
-/* END os_tasks */
-
 /*
 ** ===================================================================
-**     Callback    : Sched_Error_Catch
-**     Description : Error.
+**     Callback    : Terminal_task
+**     Description : Task function entry.
 **     Parameters  :
+**       task_init_data - OS task parameter
 **     Returns : Nothing
 ** ===================================================================
 */
-void Sched_Error_Catch( uint32_t err_code )
+void Terminal_task(os_task_param_t task_init_data)
 {
-	debug_printf( "%d", err_code );
-	ledrgb_setRedLed();
-	GPIO_DRV_TogglePinOutput(Probe_Scheduler_Error);
+  /* Write your local variable definition here */
+	uint32_t rtos_token;
+	statistiucs_t systemTotal;
+
+#ifdef PEX_USE_RTOS
+  while (1) {
+#endif
+    /* Write your code here ... */
+
+  	if( OSA_SemaWait( scheduler_task_pSemaphore(5), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
+		{
+			if( OSA_MsgQGet( scheduler_task_pQueueHandler(5), &rtos_token, 0 ) != kStatus_OSA_Success )
+			{
+				Sched_Error_Catch(12);				// Error Management.
+			}
+
+			shell_stateMachine();
+
+			systemTotal = scheduler_statistcs_getCount();
+			debug_printf("\rTask 1 Hz: %d ms - Task 2 Hz: %d ms - Task 10 Hz: %d ms - Task 25 Hz: %d ms - Task 50 Hz: %d ms - Total: %d ms",
+					scheduler_statistcs_convertToMicroseconds(&statusticsTask1Hz),
+					scheduler_statistcs_convertToMicroseconds(&statusticsTask2Hz),
+					scheduler_statistcs_convertToMicroseconds(&statusticsTask10Hz),
+					scheduler_statistcs_convertToMicroseconds(&statusticsTask25Hz),
+					scheduler_statistcs_convertToMicroseconds(&statusticsTask50Hz),
+					scheduler_statistcs_convertToMicroseconds(&systemTotal) );
+		}
+
+#ifdef PEX_USE_RTOS
+  }
+#endif
 }
 
-#ifdef __cplusplus
-}  /* extern "C" */
-#endif
-
+/* END os_tasks */
 /*!
 ** @}
 */
