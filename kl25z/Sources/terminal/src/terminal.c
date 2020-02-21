@@ -37,12 +37,15 @@
 #include "statistics.h"
 #include "terminal.h"
 
+/*
+ * get all tasks statistics to show in the terminal.
+ */
 extern statistiucs_t
-		statusticsTask1Hz,
-		statusticsTask2Hz,
-		statusticsTask10Hz,
-		statusticsTask25Hz,
-		statusticsTask50Hz;
+		statisticsTask1Hz,
+		statisticsTask2Hz,
+		statisticsTask10Hz,
+		statisticsTask25Hz,
+		statisticsTask50Hz;
 
 /*
  * Menu text definition
@@ -122,11 +125,11 @@ void shell_stateMachine(void)
 
 	case SHOW_TASK_STATES:
 	{
-		debug_printf("\n\rTask 1 Hz: %d\n\r", scheduler_statistcs_convertToMicroseconds(&statusticsTask1Hz) );
-		debug_printf("\n\rTask 2 Hz: %d\n\r", scheduler_statistcs_convertToMicroseconds(&statusticsTask2Hz) );
-		debug_printf("\n\rTask 10 Hz: %d\n\r", scheduler_statistcs_convertToMicroseconds(&statusticsTask10Hz) );
-		debug_printf("\n\rTask 25 Hz: %d\n\r", scheduler_statistcs_convertToMicroseconds(&statusticsTask25Hz) );
-		debug_printf("\n\rTask 50 Hz: %d\n\r", scheduler_statistcs_convertToMicroseconds(&statusticsTask50Hz) );
+		debug_printf("\n\rTask 1 Hz: %d\n\r", scheduler_statistcs_convertToMiliseconds(&statisticsTask1Hz) );
+		debug_printf("\n\rTask 2 Hz: %d\n\r", scheduler_statistcs_convertToMiliseconds(&statisticsTask2Hz) );
+		debug_printf("\n\rTask 10 Hz: %d\n\r", scheduler_statistcs_convertToMiliseconds(&statisticsTask10Hz) );
+		debug_printf("\n\rTask 25 Hz: %d\n\r", scheduler_statistcs_convertToMiliseconds(&statisticsTask25Hz) );
+		debug_printf("\n\rTask 50 Hz: %d\n\r", scheduler_statistcs_convertToMiliseconds(&statisticsTask50Hz) );
 
 		state = WAIT_COMMAND;
 

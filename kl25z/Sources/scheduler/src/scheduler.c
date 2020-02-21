@@ -84,12 +84,3 @@ __attribute((weak)) void Sched_Error_Catch( uint32_t err_code )
 
 	return;
 }
-
-__attribute((weak)) uint32_t Sched_get_current_time( void )
-{
-	/*
-	 * Do nothing. The user must add his own implementation of this routine.
-	 */
-
-	return 0;
-}

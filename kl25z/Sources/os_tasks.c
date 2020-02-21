@@ -51,11 +51,11 @@ extern msg_queue_handler_t errorQueueHandler;
 extern msg_queue_t errorQueue[10];
 
 statistiucs_t
-		statusticsTask1Hz = { 0, 0 },
-		statusticsTask2Hz = { 0, 0 },
-		statusticsTask10Hz = { 0, 0 },
-		statusticsTask25Hz = { 0, 0 },
-		statusticsTask50Hz = { 0, 0 };
+		statisticsTask1Hz = { 0, 0 },
+		statisticsTask2Hz = { 0, 0 },
+		statisticsTask10Hz = { 0, 0 },
+		statisticsTask25Hz = { 0, 0 },
+		statisticsTask50Hz = { 0, 0 };
 
 /*
 ** ===================================================================
@@ -81,14 +81,14 @@ void Task1Hz_task(os_task_param_t task_init_data)
   	{
   		temp = scheduler_statistcs_getCount();
 
+  		OSA_TimeDelay(1);
+
+  		scheduler_statistcs_addTime( &statisticsTask1Hz, &temp );
+
   		if( OSA_MsgQGet( scheduler_task_pQueueHandler(4), &rtos_token, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(8);				// Error Management.
 			}
-
-  		OSA_TimeDelay(1);
-
-  		scheduler_statistcs_addTime( &statusticsTask1Hz, &temp );
   	}
 
 
@@ -121,14 +121,14 @@ void Task2Hz_task(os_task_param_t task_init_data)
 	  {
 		  temp = scheduler_statistcs_getCount();
 
+	  	OSA_TimeDelay(3);
+
+	  	scheduler_statistcs_addTime( &statisticsTask2Hz, &temp );
+
 	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(3), &rtos_token, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(9);				// Error Management.
 			}
-
-	  	OSA_TimeDelay(3);
-
-	  	scheduler_statistcs_addTime( &statusticsTask2Hz, &temp );
 	  }
 #ifdef PEX_USE_RTOS
   }
@@ -159,14 +159,14 @@ void Task10Hz_task(os_task_param_t task_init_data)
 	  {
 	  	temp = scheduler_statistcs_getCount();
 
-	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(2), &rtos_token, 0 ) != kStatus_OSA_Success )
+	  	OSA_TimeDelay(10);
+
+			scheduler_statistcs_addTime( &statisticsTask10Hz, &temp );
+
+			if( OSA_MsgQGet( scheduler_task_pQueueHandler(2), &rtos_token, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(10);				// Error Management.
 			}
-
-			OSA_TimeDelay(10);
-
-			scheduler_statistcs_addTime( &statusticsTask10Hz, &temp );
 	  }
 
 #ifdef PEX_USE_RTOS
@@ -198,14 +198,14 @@ void Task25Hz_task(os_task_param_t task_init_data)
 	  {
 	  	temp = scheduler_statistcs_getCount();
 
+			OSA_TimeDelay(30);
+
+			scheduler_statistcs_addTime( &statisticsTask25Hz, &temp );
+
 	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(1), &rtos_token, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(11);				// Error Management.
 			}
-
-			OSA_TimeDelay(30);
-
-			scheduler_statistcs_addTime( &statusticsTask25Hz, &temp );
 	  }
 
 
@@ -239,14 +239,14 @@ void Task50Hz_task(os_task_param_t task_init_data)
 	  {
 	  	temp = scheduler_statistcs_getCount();
 
-	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(0), &rtos_token, 0 ) != kStatus_OSA_Success )
+	  	OSA_TimeDelay(7);
+
+			scheduler_statistcs_addTime( &statisticsTask50Hz, &temp );
+
+			if( OSA_MsgQGet( scheduler_task_pQueueHandler(0), &rtos_token, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(12);				// Error Management.
 			}
-
-			OSA_TimeDelay(7);
-
-			scheduler_statistcs_addTime( &statusticsTask50Hz, &temp );
 	  }
 
 
@@ -277,21 +277,29 @@ void Terminal_task(os_task_param_t task_init_data)
 
   	if( OSA_SemaWait( scheduler_task_pSemaphore(5), OSA_WAIT_FOREVER ) == kStatus_OSA_Success )
 		{
+			shell_stateMachine();
+/*
+ * @REMOVE
+ * @{
+ * For debug purposes, this code print all tasks statistics into the terminal without any command.
+ * This may be removed, though.
+ */
+			systemTotal = scheduler_statistcs_getCount();
+			debug_printf("\rTask 1 Hz: %d ms - Task 2 Hz: %d ms - Task 10 Hz: %d ms - Task 25 Hz: %d ms - Task 50 Hz: %d ms - Total: %d ms",
+					scheduler_statistcs_convertToMiliseconds(&statisticsTask1Hz),
+					scheduler_statistcs_convertToMiliseconds(&statisticsTask2Hz),
+					scheduler_statistcs_convertToMiliseconds(&statisticsTask10Hz),
+					scheduler_statistcs_convertToMiliseconds(&statisticsTask25Hz),
+					scheduler_statistcs_convertToMiliseconds(&statisticsTask50Hz),
+					scheduler_statistcs_convertToMiliseconds(&systemTotal) );
+/*
+ * @}
+ */
+
 			if( OSA_MsgQGet( scheduler_task_pQueueHandler(5), &rtos_token, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(12);				// Error Management.
 			}
-
-			shell_stateMachine();
-
-			systemTotal = scheduler_statistcs_getCount();
-			debug_printf("\rTask 1 Hz: %d ms - Task 2 Hz: %d ms - Task 10 Hz: %d ms - Task 25 Hz: %d ms - Task 50 Hz: %d ms - Total: %d ms",
-					scheduler_statistcs_convertToMicroseconds(&statusticsTask1Hz),
-					scheduler_statistcs_convertToMicroseconds(&statusticsTask2Hz),
-					scheduler_statistcs_convertToMicroseconds(&statusticsTask10Hz),
-					scheduler_statistcs_convertToMicroseconds(&statusticsTask25Hz),
-					scheduler_statistcs_convertToMicroseconds(&statusticsTask50Hz),
-					scheduler_statistcs_convertToMicroseconds(&systemTotal) );
 		}
 
 #ifdef PEX_USE_RTOS

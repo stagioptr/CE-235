@@ -167,14 +167,23 @@ void HardFault_Handler (void)
 /*
 ** ===================================================================
 **     Callback    : Sched_Error_Catch
-**     Description : Error.
+**     Description : Software error treatment.
 **     Parameters  :
 **     Returns : Nothing
 ** ===================================================================
 */
 void Sched_Error_Catch( uint32_t err_code )
 {
+/*
+ * Add error code into an queue and then, in the shell task, it can be
+ * printed in the terminal.
+ */
 	OSA_MsgQPut( errorQueueHandler, &err_code );
+
+/*
+ * Turn on Error LED and probe, making possible to sinalize and measure the exact
+ * time that this error happened.
+ */
 	GPIO_DRV_TogglePinOutput(Probe_Scheduler_Error);
 	ledrgb_setRedLed();
 }

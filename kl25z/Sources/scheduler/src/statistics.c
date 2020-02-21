@@ -34,8 +34,14 @@
 #include "fsl_tpm_driver.h"
 #include "statistics.h"
 
+/*
+ * Count of the statistics timer's ticks.
+ */
 int32_t ticksCount = 0;
 
+/*
+ * Get a timestamp of the moment that this routine was called.
+ */
 statistiucs_t scheduler_statistcs_getCount ( void )
 {
 	statistiucs_t temp;
@@ -46,6 +52,9 @@ statistiucs_t scheduler_statistcs_getCount ( void )
 	return temp;
 }
 
+/*
+ * Add to a total the quantity of time between the input timestamp and current timestamp of the system.
+ */
 void scheduler_statistcs_addTime ( statistiucs_t* totals, statistiucs_t* countBeforeOperation )
 {
 	uint32_t temp = TPM_DRV_CounterRead(TPM0_IDX);
@@ -67,6 +76,9 @@ void scheduler_statistcs_addTime ( statistiucs_t* totals, statistiucs_t* countBe
 	totals->ticks += abs( ticksCount - countBeforeOperation->ticks );
 }
 
+/*
+ * Calculate the difference between two timestamps.
+ */
 statistiucs_t scheduler_statistcs_differenceOfTime ( statistiucs_t* start, statistiucs_t* stop )
 {
 	statistiucs_t result;
@@ -85,7 +97,10 @@ statistiucs_t scheduler_statistcs_differenceOfTime ( statistiucs_t* start, stati
 	return result;
 }
 
-uint32_t scheduler_statistcs_convertToMicroseconds ( statistiucs_t* value )
+/*
+ * Convert timestamp to milisecond.
+ */
+uint32_t scheduler_statistcs_convertToMiliseconds ( statistiucs_t* value )
 {
 	uint32_t temp;
 
