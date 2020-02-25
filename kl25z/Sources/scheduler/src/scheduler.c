@@ -40,14 +40,14 @@
 semaphore_t lowPowerTimerSema = NULL;
 
 task_setup_t *task_setup_pointer = NULL;
-uint32_t max_semaphores = 0;
+uint32_t maxSemaphores = 0;
 
 scheduler_status_t scheduler_setup ( task_setup_t *task_setup, uint32_t length )
 {
   /* Initialize all user tasks semaphores */
 
 	task_setup_pointer = task_setup;
-	max_semaphores = length;
+	maxSemaphores = length;
 
   if( OSA_SemaCreate( &lowPowerTimerSema, 0 ) != kStatus_OSA_Success )
   	Sched_Error_Catch(1);				// Error Management.

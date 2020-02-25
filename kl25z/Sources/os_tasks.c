@@ -69,7 +69,7 @@ statistiucs_t
 void Task1Hz_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
-	uint32_t rtos_token;
+	uint32_t rtosToken;
 	statistiucs_t temp = { 0, 0 };
 
 #ifdef PEX_USE_RTOS
@@ -85,7 +85,7 @@ void Task1Hz_task(os_task_param_t task_init_data)
 
   		scheduler_statistcs_addTime( &statisticsTask1Hz, &temp );
 
-  		if( OSA_MsgQGet( scheduler_task_pQueueHandler(4), &rtos_token, 0 ) != kStatus_OSA_Success )
+  		if( OSA_MsgQGet( scheduler_task_pQueueHandler(4), &rtosToken, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(8);				// Error Management.
 			}
@@ -109,7 +109,7 @@ void Task1Hz_task(os_task_param_t task_init_data)
 void Task2Hz_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
-	uint32_t rtos_token;
+	uint32_t rtosToken;
 	statistiucs_t temp = { 0, 0 };
 
 #ifdef PEX_USE_RTOS
@@ -125,7 +125,7 @@ void Task2Hz_task(os_task_param_t task_init_data)
 
 	  	scheduler_statistcs_addTime( &statisticsTask2Hz, &temp );
 
-	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(3), &rtos_token, 0 ) != kStatus_OSA_Success )
+	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(3), &rtosToken, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(9);				// Error Management.
 			}
@@ -147,7 +147,7 @@ void Task2Hz_task(os_task_param_t task_init_data)
 void Task10Hz_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
-	uint32_t rtos_token;
+	uint32_t rtosToken;
 	statistiucs_t temp = { 0, 0 };
 
 #ifdef PEX_USE_RTOS
@@ -163,7 +163,7 @@ void Task10Hz_task(os_task_param_t task_init_data)
 
 			scheduler_statistcs_addTime( &statisticsTask10Hz, &temp );
 
-			if( OSA_MsgQGet( scheduler_task_pQueueHandler(2), &rtos_token, 0 ) != kStatus_OSA_Success )
+			if( OSA_MsgQGet( scheduler_task_pQueueHandler(2), &rtosToken, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(10);				// Error Management.
 			}
@@ -186,7 +186,7 @@ void Task10Hz_task(os_task_param_t task_init_data)
 void Task25Hz_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
-	uint32_t rtos_token;
+	uint32_t rtosToken;
 	statistiucs_t temp = { 0, 0 };
 
 #ifdef PEX_USE_RTOS
@@ -202,7 +202,7 @@ void Task25Hz_task(os_task_param_t task_init_data)
 
 			scheduler_statistcs_addTime( &statisticsTask25Hz, &temp );
 
-	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(1), &rtos_token, 0 ) != kStatus_OSA_Success )
+	  	if( OSA_MsgQGet( scheduler_task_pQueueHandler(1), &rtosToken, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(11);				// Error Management.
 			}
@@ -226,7 +226,7 @@ void Task25Hz_task(os_task_param_t task_init_data)
 void Task50Hz_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
-	uint32_t rtos_token;
+	uint32_t rtosToken;
 	statistiucs_t temp = { 0, 0 };
 
 #ifdef PEX_USE_RTOS
@@ -243,7 +243,7 @@ void Task50Hz_task(os_task_param_t task_init_data)
 
 			scheduler_statistcs_addTime( &statisticsTask50Hz, &temp );
 
-			if( OSA_MsgQGet( scheduler_task_pQueueHandler(0), &rtos_token, 0 ) != kStatus_OSA_Success )
+			if( OSA_MsgQGet( scheduler_task_pQueueHandler(0), &rtosToken, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(12);				// Error Management.
 			}
@@ -267,7 +267,7 @@ void Task50Hz_task(os_task_param_t task_init_data)
 void Terminal_task(os_task_param_t task_init_data)
 {
   /* Write your local variable definition here */
-	uint32_t rtos_token;
+	uint32_t rtosToken;
 	statistiucs_t systemTotal;
 
 #ifdef PEX_USE_RTOS
@@ -296,7 +296,7 @@ void Terminal_task(os_task_param_t task_init_data)
  * @}
  */
 
-			if( OSA_MsgQGet( scheduler_task_pQueueHandler(5), &rtos_token, 0 ) != kStatus_OSA_Success )
+			if( OSA_MsgQGet( scheduler_task_pQueueHandler(5), &rtosToken, 0 ) != kStatus_OSA_Success )
 			{
 				Sched_Error_Catch(12);				// Error Management.
 			}

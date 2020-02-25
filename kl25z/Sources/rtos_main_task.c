@@ -51,7 +51,7 @@ typedef enum
 	SCHEDULER_FREQ_LENGTH
 }scheduler_frequency_e;
 
-uint32_t scheduler_count_a[SCHEDULER_FREQ_LENGTH] =
+uint32_t schedulerCountA[SCHEDULER_FREQ_LENGTH] =
 {
 		0, 0, 0, 0, 0, 0
 };
@@ -80,7 +80,7 @@ void main_task(os_task_param_t task_init_data)
   PEX_components_init();
 #endif
   /* End of Processor Expert components initialization.  */
-  uint32_t rtos_token = 0xAAAAAAAA;
+  uint32_t rtosToken = 0xAAAAAAAA;
 
 #ifdef PEX_USE_RTOS
   while (1) {
@@ -93,26 +93,26 @@ void main_task(os_task_param_t task_init_data)
 
 		  for( scheduler_frequency_e loop = SCHEDULER_50_HZ; loop<SCHEDULER_FREQ_LENGTH; loop++ )
 		  {
-			  scheduler_count_a[loop]++;
+			  schedulerCountA[loop]++;
 
-			  if( scheduler_count_a[loop] >= scheduler_task_pTimer_division(loop) )
+			  if( schedulerCountA[loop] >= scheduler_task_pTimer_division(loop) )
 			  {
-				  scheduler_count_a[loop] = 0;
+				  schedulerCountA[loop] = 0;
 
 				  if( OSA_SemaPost( scheduler_task_pSemaphore(loop) ) != kStatus_OSA_Success )
 				  {
 					  Sched_Error_Catch(3);				// Error Management.
 				  }
-				  if( OSA_MsgQPut( scheduler_task_pQueueHandler(loop), &rtos_token ) != kStatus_OSA_Success )
-					{
-						Sched_Error_Catch(7);				// Error Management.
-					}
+				  if( OSA_MsgQPut( scheduler_task_pQueueHandler(loop), &rtosToken ) != kStatus_OSA_Success )
+				  {
+					  Sched_Error_Catch(7);				// Error Management.
+				  }
 			  }
 		  }
 	  }
 	  else
 	  {
-	  	Sched_Error_Catch(6);				// Error Management.
+		  Sched_Error_Catch(6);				// Error Management.
 		  // catch error.
 	  }
 
